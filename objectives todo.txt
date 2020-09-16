@@ -1,0 +1,26 @@
+Future
+-	Implement default context radio messages
+	-	Guide:
+		-	Merchant @ 50 silver
+		-	Obsidian Skull @ Meteor/hellstone burn
+		-	Darkness-infused ore and crafting material @ Orb smashed
+		-	Voodoo sacrifice @ Voodoo acquired
+		-	Mech bosses @ soul acquired
+		-	Flight @ wyvern encountered
+		-	Jungle access via mech kills @ enter jungle in hard mode
+		-	Temple access via "jungle guardian" @ temple encountered in hard mode
+-	Define Codec Radio
+
+
+
+v1
+-	@MH fix control panel position when grand design is equipped
+-	Implement percentage display
+
+-	Implement objectives list
+	-	Add alerts for completions
+	-	Implement condition checking
+	-	Implement objective entry (description, conditions, progress)
+	-	Define API
+-	Define new control panel tab
+-	Setup project
