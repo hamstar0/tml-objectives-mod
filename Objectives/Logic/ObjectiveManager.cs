@@ -24,26 +24,16 @@ namespace Objectives.Logic {
 
 
 		////////////////
-		
-		public bool AddObjective( Objective objective, int order, out string result ) {
-			if( !this.AddObjectiveData(objective, ref order, out result) ) {
-				return false;
-			}
 
-			ObjectivesMod.Instance.ObjectivesTabUI.AddObjective( objective, order );
-			return true;
-		}
-
-		public void RemoveObjective( string title ) {
-			this.RemoveObjective( title );
-
-			ObjectivesMod.Instance.ObjectivesTabUI.RemoveObjective( title );
-		}
-
-
-		////////////////
+		private int _UpdateTimer = 0;
 
 		internal void Update_Internal() {
+			if( this._UpdateTimer-- <= 0 ) {
+				this._UpdateTimer = 60;
+			} else {
+				return;
+			}
+
 			foreach( Objective obj in this.Objectives.Values ) {
 				obj.Update_Internal();
 			}

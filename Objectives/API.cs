@@ -34,10 +34,10 @@ namespace Objectives {
 
 		////////////////
 
-		public static bool AddObjective( Objective objective, int order, out string result ) {
+		public static bool AddObjective( Objective objective, int order, bool alertPlayer, out string result ) {
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
 
-			return mngr.AddObjective( objective, order, out result );
+			return mngr.AddObjective( objective, order, alertPlayer, out result );
 		}
 
 		////

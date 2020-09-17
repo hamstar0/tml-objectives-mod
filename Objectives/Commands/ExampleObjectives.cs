@@ -35,6 +35,7 @@ namespace Objectives.Commands {
 					condition: ( obj ) => NPCHelpers.CurrentPlayerKillsOfBannerNpc(NPCID.BlueSlime) > 0
 				),
 				order: -1,
+				alertPlayer: false,
 				result: out _
 			);
 
@@ -50,6 +51,7 @@ namespace Objectives.Commands {
 					) / 50f
 				),
 				order: -1,
+				alertPlayer: false,
 				result: out _
 			);
 
@@ -59,6 +61,7 @@ namespace Objectives.Commands {
 					description: "Can't be done."
 				),
 				order: -1,
+				alertPlayer: false,
 				result: out _
 			);
 
@@ -73,6 +76,7 @@ namespace Objectives.Commands {
 					) > 0
 				),
 				order: -1,
+				alertPlayer: false,
 				result: out _
 			);
 
@@ -87,6 +91,7 @@ namespace Objectives.Commands {
 					) > 0
 				),
 				order: -1,
+				alertPlayer: false,
 				result: out _
 			);
 
@@ -98,6 +103,7 @@ namespace Objectives.Commands {
 					condition: ( obj ) => (float)NPCHelpers.CurrentPlayerKillsOfBannerNpc( NPCID.Squid ) / 10f
 				),
 				order: -1,
+				alertPlayer: false,
 				result: out _
 			);
 
@@ -113,6 +119,7 @@ namespace Objectives.Commands {
 					) / 99f
 				),
 				order: -1,
+				alertPlayer: false,
 				result: out _
 			);
 		}
