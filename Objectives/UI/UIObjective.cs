@@ -1,10 +1,13 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.UI;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Draw;
 using Objectives.Definitions;
 using Objectives.Logic;
 
@@ -77,6 +80,43 @@ namespace Objectives.UI {
 				return 1;
 			} else {
 				return 0;
+			}
+		}
+
+
+		////////////////
+
+		public override void Draw( SpriteBatch sb ) {
+			base.Draw( sb );
+
+			float perc = this.Objective.PercentComplete();
+
+			if( perc > 0f && perc < 1f ) {
+				CalculatedStyle style = this.GetDimensions();
+				Rectangle rect = style.ToRectangle();
+
+				rect.X += 8;
+				rect.Y += 56;
+				rect.Width -= 16;
+				rect.Height -= 64;
+
+				Rectangle percRect = rect;
+				percRect.Width = (int)((float)percRect.Width * perc);
+
+				DrawHelpers.DrawBorderedRect(
+					sb: sb,
+					bgColor: Color.Lime,
+					borderColor: null,
+					rect: percRect,
+					borderWidth: 2
+				);
+				DrawHelpers.DrawBorderedRect(
+					sb: sb,
+					bgColor: null,
+					borderColor: Color.White,
+					rect: rect,
+					borderWidth: 2
+				);
 			}
 		}
 	}

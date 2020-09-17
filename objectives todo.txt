@@ -15,8 +15,8 @@ Future
 
 v1
 -	@MH fix control panel position when grand design is equipped
--	Implement percentage display
 
+-	Implement percentage display
 -	Implement objectives list
 	-	Add alerts for completions
 	-	Implement condition checking

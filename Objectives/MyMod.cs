@@ -6,6 +6,7 @@ using HamstarHelpers.Services.UI.ControlPanel;
 using Objectives.UI;
 using Objectives.Logic;
 
+
 namespace Objectives {
 	public class ObjectivesMod : Mod {
 		public const string ControlPanelName = "Objectives";

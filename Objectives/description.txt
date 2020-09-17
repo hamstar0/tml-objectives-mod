@@ -1,1 +1,1 @@
-Objectives is a pretty cool mod, it does...this. Modify this file with a description of your mod.
+Library mod for to provide a UI (control panel tab) for viewing and maintaining a set of objectives.

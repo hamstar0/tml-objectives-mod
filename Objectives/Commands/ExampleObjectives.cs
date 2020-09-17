@@ -92,7 +92,7 @@ namespace Objectives.Commands {
 
 			ObjectivesAPI.AddObjective(
 				objective: new PercentObjective(
-					title: "Kill A Squid",
+					title: "Kill 10 Squids",
 					description: "Thanks twerking Squidward. Some random squids must be punished now.",
 					units: 10,
 					condition: ( obj ) => (float)NPCHelpers.CurrentPlayerKillsOfBannerNpc( NPCID.Squid ) / 10f

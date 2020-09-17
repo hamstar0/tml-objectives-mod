@@ -5,7 +5,6 @@ using Terraria;
 using Terraria.UI;
 using Terraria.GameContent.UI.Elements;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel;
 
@@ -34,10 +33,10 @@ namespace Objectives.UI {
 		////////////////
 
 		public override void OnInitializeMe() {
-			var progressLabel = new UIText( "Progress", 0.7f );
-			progressLabel.Top.Set( 0f, 0f );
-			progressLabel.Left.Set( 0f, 0f );
-			this.Append( (UIElement)progressLabel );
+			var label = new UIText( "Objectives:" );
+			label.Top.Set( 0f, 0f );
+			label.Left.Set( 0f, 0f );
+			this.Append( (UIElement)label );
 
 			var objectivesPanel = new UIPanel();
 			objectivesPanel.Top.Set( 24f, 0f );
@@ -51,6 +50,7 @@ namespace Objectives.UI {
 			this.Append( (UIElement)objectivesPanel );
 
 			this.ObjectivesDisplayElem = new UIList();
+			this.ObjectivesDisplayElem.Left.Set( 0f, 0f );
 			this.ObjectivesDisplayElem.Width.Set( -25f, 1f );
 			this.ObjectivesDisplayElem.Height.Set( 0f, 1f );
 			this.ObjectivesDisplayElem.HAlign = 0f;
@@ -58,12 +58,14 @@ namespace Objectives.UI {
 			this.ObjectivesDisplayElem.SetPadding( 0f );
 			objectivesPanel.Append( (UIElement)this.ObjectivesDisplayElem );
 
-			this.Scrollbar = new UIHideableScrollbar( this.ObjectivesDisplayElem, true );
+			this.Scrollbar = new UIHideableScrollbar( true );
 			this.Scrollbar.Top.Set( 8f, 0f );
+			this.Scrollbar.Left.Set( -24f, 1f );
 			this.Scrollbar.Height.Set( -16f, 1f );
 			this.Scrollbar.SetView( 100f, 1000f );
-			this.Scrollbar.HAlign = 1f;
+			this.Scrollbar.HAlign = 0f;
 			objectivesPanel.Append( (UIElement)this.Scrollbar );
+
 			this.ObjectivesDisplayElem.SetScrollbar( this.Scrollbar );
 
 			//
