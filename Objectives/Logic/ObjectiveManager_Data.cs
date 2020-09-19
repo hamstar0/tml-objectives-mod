@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using HamstarHelpers.Classes.Loadable;
 using Objectives.Definitions;
@@ -50,9 +49,9 @@ namespace Objectives.Logic {
 				idx = -1;
 			}
 
-			this.Objectives.Remove( title );
+			this.Objectives.TryRemove( title, out Objective _ );
 			this.ObjectiveOrder.Remove( title );
-			this.ObjectiveOrderByName.Remove( title );
+			this.ObjectiveOrderByName.TryRemove( title, out int __ );
 
 			if( idx == -1 ) {
 				return;

@@ -52,7 +52,7 @@ namespace Objectives.UI {
 				return;
 			}
 
-			if( mngr.Objectives[ this.Objective.Title ].IsComplete() ) {
+			if( mngr.Objectives[ this.Objective.Title ].PercentComplete >= 1f ) {
 				this.TitleElem.TextColor = Color.Gray;
 				this.DescriptionElem.TextColor = Color.Gray;
 			} else {
@@ -89,7 +89,7 @@ namespace Objectives.UI {
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
 
-			float perc = this.Objective.PercentComplete();
+			float perc = this.Objective.PercentComplete;
 
 			if( perc > 0f && perc < 1f ) {
 				CalculatedStyle style = this.GetDimensions();

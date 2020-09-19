@@ -15,6 +15,11 @@ namespace Objectives.Definitions {
 		protected ChecklistObjectiveCondition Condition = null;
 
 
+		////////////////
+
+		public IDictionary<string, bool> CheckList { get; private set; }
+
+
 
 		////////////////
 
@@ -28,14 +33,10 @@ namespace Objectives.Definitions {
 
 		////////////////
 
-		public sealed override IDictionary<string, float> GetCompletionStatus() {
-			IDictionary<string, bool> checklist = this.GetCompletionChecklistStatus();
-			return checklist.ToDictionary( kv=>kv.Key, kv=>kv.Value ? 1f : 0f );
-		}
+		protected sealed override IDictionary<string, float> ComputeCompletionStatus() {
+			this.CheckList = this.Condition?.Invoke( this ) ?? new Dictionary<string, bool>();
 
-		public virtual IDictionary<string, bool> GetCompletionChecklistStatus() {
-			IDictionary<string, bool> checklist = this.Condition?.Invoke( this ) ?? new Dictionary<string, bool>();
-			return checklist;
+			return this.CheckList.ToDictionary( kv=>kv.Key, kv=>kv.Value ? 1f : 0f );
 		}
 	}
 }

@@ -13,6 +13,11 @@ namespace Objectives.Definitions {
 		protected FlatObjectiveCondition Condition = null;
 
 
+		////////////////
+
+		public bool IsComplete => this.PercentComplete >= 1f;
+
+
 
 		////////////////
 
@@ -24,14 +29,9 @@ namespace Objectives.Definitions {
 
 		////////////////
 
-		public sealed override IDictionary<string, float> GetCompletionStatus() {
-			bool flag = this.GetCompletionFlagStatus();
+		protected sealed override IDictionary<string, float> ComputeCompletionStatus() {
+			bool flag = this.Condition?.Invoke( this ) ?? true;
 			return new Dictionary<string, float> { { "", flag ? 1f : 0f } };
-		}
-
-		public virtual bool GetCompletionFlagStatus() {
-			bool flag = this.Condition?.Invoke(this) ?? true;
-			return flag;
 		}
 	}
 }

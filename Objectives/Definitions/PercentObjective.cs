@@ -31,14 +31,10 @@ namespace Objectives.Definitions {
 
 		////////////////
 
-		public sealed override IDictionary<string, float> GetCompletionStatus() {
-			float percent = this.GetCompletionPercentStatus();
-			return new Dictionary<string, float> { { "", percent } };
-		}
+		protected sealed override IDictionary<string, float> ComputeCompletionStatus() {
+			float percent = this.Condition?.Invoke( this ) ?? 1f;
 
-		public virtual float GetCompletionPercentStatus() {
-			float percent = this.Condition?.Invoke(this) ?? 1f;
-			return percent;
+			return new Dictionary<string, float> { { "", percent } };
 		}
 	}
 }

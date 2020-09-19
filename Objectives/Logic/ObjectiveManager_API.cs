@@ -26,7 +26,7 @@ namespace Objectives.Logic {
 
 
 		public void RemoveObjective( string title ) {
-			this.RemoveObjective( title );
+			this.RemoveObjectiveData( title );
 
 			ObjectivesMod.Instance.ObjectivesTabUI.RemoveObjective( title );
 		}
