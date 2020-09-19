@@ -13,11 +13,6 @@ namespace Objectives.Definitions {
 		protected FlatObjectiveCondition Condition = null;
 
 
-		////////////////
-
-		public bool IsComplete => this.PercentComplete >= 1f;
-
-
 
 		////////////////
 

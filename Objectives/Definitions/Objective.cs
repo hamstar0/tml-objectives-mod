@@ -21,6 +21,8 @@ namespace Objectives.Definitions {
 
 		public float PercentComplete { get; private set; }
 
+		public bool IsComplete => this.PercentComplete >= 1f;
+
 
 
 		////////////////
@@ -52,7 +54,9 @@ namespace Objectives.Definitions {
 		////////////////
 
 		internal void Update_Internal() {
-			this.PercentComplete = this.ComputeCompletionPercent();
+			if( !this.IsComplete ) {
+				this.PercentComplete = this.ComputeCompletionPercent();
+			}
 
 			if( !this.HasAlerted ) {
 				if( this.PercentComplete >= 1f ) {
