@@ -4,6 +4,8 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Helpers.World;
 
 
 namespace Objectives.Definitions {
@@ -19,7 +21,7 @@ namespace Objectives.Definitions {
 
 		////
 
-		public float PercentComplete { get; private set; }
+		public float PercentComplete { get; internal set; }
 
 		public bool IsComplete => this.PercentComplete >= 1f;
 
@@ -56,10 +58,16 @@ namespace Objectives.Definitions {
 		internal void Update_Internal() {
 			if( !this.IsComplete ) {
 				this.PercentComplete = this.ComputeCompletionPercent();
+
+				var myplayer = Main.LocalPlayer.GetModPlayer<ObjectivesPlayer>();
+				myplayer?.CompletedObjectivesPerWorld.Set2D(
+					WorldHelpers.GetUniqueIdForCurrentWorld(true),
+					this.Title
+				);
 			}
 
-			if( !this.HasAlerted ) {
-				if( this.PercentComplete >= 1f ) {
+			if( this.IsComplete ) {
+				if( !this.HasAlerted ) {
 					Main.NewText( "Completed objective: "+this.Title, Color.Lime );
 					this.HasAlerted = true;
 				}

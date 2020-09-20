@@ -63,5 +63,11 @@ namespace Objectives.Logic {
 				this.ObjectiveOrderByName[ next ] -= 1;
 			}
 		}
+
+		private void ClearObjectivesData() {
+			this.Objectives.Clear();
+			this.ObjectiveOrder.Clear();
+			this.ObjectiveOrderByName.Clear();
+		}
 	}
 }

@@ -47,5 +47,13 @@ namespace Objectives {
 
 			mngr.RemoveObjective( title );
 		}
+
+		////
+
+		public static void ClearObjectives() {
+			var mngr = ModContent.GetInstance<ObjectiveManager>();
+
+			mngr.ClearObjectives();
+		}
 	}
 }

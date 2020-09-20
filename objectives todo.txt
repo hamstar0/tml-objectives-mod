@@ -14,6 +14,9 @@ Future
 
 
 v1
+-	Implement checklist display
+-	Implement percentage display ticks
+
 -	@MH fix control panel position when grand design is equipped
 -	Implement percentage display
 -	Implement objectives list
