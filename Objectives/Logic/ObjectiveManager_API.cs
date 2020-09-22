@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.World;
 using HamstarHelpers.Services.UI.ControlPanel;

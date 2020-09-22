@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using Objectives.Definitions;
@@ -10,6 +13,10 @@ using Objectives.Logic;
 namespace Objectives {
 	public class ObjectivesAPI {
 		public static Objective GetObjective( string title ) {
+			if( Main.netMode == NetmodeID.Server ) {
+				throw new ModHelpersException( "Server objectives not allowed." );
+			}
+
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
 
 			return mngr.Objectives.GetOrDefault( title );
@@ -17,6 +24,10 @@ namespace Objectives {
 
 
 		public static IDictionary<int, Objective> GetObjectives( Func<Objective, int, bool> criteria ) {
+			if( Main.netMode == NetmodeID.Server ) {
+				throw new ModHelpersException( "Server objectives not allowed." );
+			}
+
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
 			var matches = new Dictionary<int, Objective>();
 
@@ -35,6 +46,10 @@ namespace Objectives {
 		////////////////
 
 		public static bool AddObjective( Objective objective, int order, bool alertPlayer, out string result ) {
+			if( Main.netMode == NetmodeID.Server ) {
+				throw new ModHelpersException( "Server objectives not allowed." );
+			}
+
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
 
 			return mngr.AddObjective( objective, order, alertPlayer, out result );
@@ -43,6 +58,10 @@ namespace Objectives {
 		////
 
 		public static void RemoveObjective( string title ) {
+			if( Main.netMode == NetmodeID.Server ) {
+				throw new ModHelpersException( "Server objectives not allowed." );
+			}
+
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
 
 			mngr.RemoveObjective( title );
@@ -51,6 +70,10 @@ namespace Objectives {
 		////
 
 		public static void ClearObjectives() {
+			if( Main.netMode == NetmodeID.Server ) {
+				throw new ModHelpersException( "Server objectives not allowed." );
+			}
+
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
 
 			mngr.ClearObjectives();
