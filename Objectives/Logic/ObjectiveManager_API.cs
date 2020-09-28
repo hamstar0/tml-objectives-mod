@@ -5,6 +5,7 @@ using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.World;
+using HamstarHelpers.Services.Messages.Inbox;
 using HamstarHelpers.Services.UI.ControlPanel;
 using Objectives.Definitions;
 
@@ -24,8 +25,21 @@ namespace Objectives.Logic {
 			}
 
 			ObjectivesMod.Instance.ObjectivesTabUI.AddObjective( objective, order );
+			
+			if( !objective.IsComplete && alertPlayer ) {
+				InboxMessages.SetMessage(
+					which: "ObjectivesAlert",
+					msg: "New objective(s) added!",
+					forceUnread: true,
+					onRun: ( isUnread ) => {
+						if( isUnread ) {
+							if( !ControlPanelTabs.IsDialogOpen() ) {
+								ControlPanelTabs.OpenTab( ObjectivesMod.ControlPanelName );
+							}
+						}
+					}
+				);
 
-			if( alertPlayer ) {
 				ControlPanelTabs.AddTabAlert( ObjectivesMod.ControlPanelName );
 				
 				Main.NewText( "New objective added: " + objective.Title, Color.Yellow );
