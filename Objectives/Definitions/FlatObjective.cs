@@ -16,7 +16,7 @@ namespace Objectives.Definitions {
 
 		////////////////
 
-		public FlatObjective( string title, string description, FlatObjectiveCondition condition =null )
+		public FlatObjective( string title, string description, FlatObjectiveCondition condition = null )
 					: base( title, description ) {
 			this.Condition = condition;
 		}
@@ -25,8 +25,11 @@ namespace Objectives.Definitions {
 		////////////////
 
 		protected sealed override IDictionary<string, float> ComputeCompletionStatus() {
-			bool flag = this.Condition?.Invoke( this ) ?? true;
-			return new Dictionary<string, float> { { "", flag ? 1f : 0f } };
+			bool flag = this.Condition?.Invoke( this ) ?? false;
+
+			return new Dictionary<string, float> {
+				{ "", flag ? 1f : 0f }
+			};
 		}
 	}
 }

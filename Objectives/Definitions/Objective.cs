@@ -21,7 +21,7 @@ namespace Objectives.Definitions {
 
 		////
 
-		public float PercentComplete { get; internal set; }
+		public float PercentComplete { get; internal set; } = 0f;
 
 		public bool IsComplete => this.PercentComplete >= 1f;
 
@@ -32,7 +32,11 @@ namespace Objectives.Definitions {
 		protected Objective( string title, string description ) {
 			this.Title = title;
 			this.Description = description;
+		}
 
+		////
+
+		internal void Initialize() {
 			this.PercentComplete = this.ComputeCompletionPercent();
 
 			if( this.PercentComplete >= 1f ) {
@@ -48,6 +52,9 @@ namespace Objectives.Definitions {
 
 		private float ComputeCompletionPercent() {
 			IDictionary<string, float> status = this.ComputeCompletionStatus();
+			if( status.Count == 0 ) {
+				return 0f;
+			}
 
 			return status.Sum( kv => kv.Value ) / (float)status.Count;
 		}

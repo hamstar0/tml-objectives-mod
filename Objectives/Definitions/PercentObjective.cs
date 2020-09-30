@@ -34,7 +34,9 @@ namespace Objectives.Definitions {
 		protected sealed override IDictionary<string, float> ComputeCompletionStatus() {
 			float percent = this.Condition?.Invoke( this ) ?? 1f;
 
-			return new Dictionary<string, float> { { "", percent } };
+			return new Dictionary<string, float> {
+				{ "", percent }
+			};
 		}
 	}
 }
