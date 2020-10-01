@@ -1,6 +1,6 @@
 displayName = Objectives
 author = hamstar
-version = 0.2.6
+version = 0.2.6.1
 modReferences = HamstarHelpers@5.9.5
 buildIgnore = *.csproj, *.user, *.bat, obj\*, bin\*, .vs\*, .git\*
 homepage = https://github.com/hamstar0/tml-objectives-mod

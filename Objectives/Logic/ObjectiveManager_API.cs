@@ -21,13 +21,8 @@ namespace Objectives.Logic {
 			string worldUid = WorldHelpers.GetUniqueIdForCurrentWorld( true );
 
 			// Load data
-			if( myplayer?.CompletedObjectivesPerWorld.Contains2D(worldUid, objective.Title) ?? false ) {
-				objective.PercentComplete = 1f;
-			}
-			// Otherwise initialize
-			else {
-				objective.Initialize();
-			}
+			bool isComplete = myplayer?.CompletedObjectivesPerWorld.Contains2D( worldUid, objective.Title ) ?? false;
+			objective.Initialize( isComplete );
 
 			ObjectivesMod.Instance.ObjectivesTabUI.AddObjective( objective, order );
 			

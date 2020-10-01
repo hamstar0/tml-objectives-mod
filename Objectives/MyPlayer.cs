@@ -28,25 +28,23 @@ namespace Objectives {
 				string worldUid = tag.GetString( "world_uid_"+i );
 				int objectiveCount = tag.GetInt( "world_obj_count_"+i );
 
-				this.CompletedObjectivesPerWorld[ worldUid ] = new HashSet<string>();
-
 				for( int j=0; j<objectiveCount; j++ ) {
 					string objective = tag.GetString( "world_"+i+"_obj_"+j );
 
-					this.CompletedObjectivesPerWorld[ worldUid ].Add( objective );
+					this.CompletedObjectivesPerWorld.Set2D( worldUid, objective );
 				}
 			}
 		}
 
 		public override TagCompound Save() {
 			var tag = new TagCompound {
-				{ "would_count", this.CompletedObjectivesPerWorld.Count }
+				{ "world_count", this.CompletedObjectivesPerWorld.Count }
 			};
 
 			int i = 0;
 			foreach( (string worldUid, ISet<string> objectives) in this.CompletedObjectivesPerWorld ) {
 				tag[ "world_uid_"+i ] = worldUid;
-				tag[ "world_obj_count_"+i ] = worldUid;
+				tag[ "world_obj_count_"+i ] = objectives.Count;
 
 				int j=0;
 				foreach( string objective in objectives ) {

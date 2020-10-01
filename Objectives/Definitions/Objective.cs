@@ -36,8 +36,8 @@ namespace Objectives.Definitions {
 
 		////
 
-		internal void Initialize() {
-			this.PercentComplete = this.ComputeCompletionPercent();
+		internal void Initialize( bool isAlreadyComplete ) {
+			this.PercentComplete = isAlreadyComplete ? 1f : this.ComputeCompletionPercent();
 
 			if( this.PercentComplete >= 1f ) {
 				this.HasAlerted = true;
