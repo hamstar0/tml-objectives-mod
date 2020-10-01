@@ -29,7 +29,7 @@ namespace Objectives {
 
 		////////////////
 
-		public static bool HasObjective( string title ) {
+		public static bool IsFinishedObjective( string title ) {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server objectives not allowed." );
 			}
@@ -42,7 +42,8 @@ namespace Objectives {
 			);
 		}
 
-		////
+
+		////////////////
 
 		public static Objective GetObjective( string title ) {
 			if( Main.netMode == NetmodeID.Server ) {
