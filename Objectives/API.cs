@@ -6,12 +6,44 @@ using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Helpers.World;
 using Objectives.Definitions;
 using Objectives.Logic;
 
 
 namespace Objectives {
 	public class ObjectivesAPI {
+		public static bool AreObjectivesLoadedForCurrentPlayer() {
+			if( Main.netMode == NetmodeID.Server ) {
+				throw new ModHelpersException( "Server has no player." );
+			}
+
+			if( Main.gameMenu ) {
+				return false;
+			}
+
+			var myplayer = Main.LocalPlayer.GetModPlayer<ObjectivesPlayer>();
+			return myplayer.AreObjectivesLoaded;
+		}
+
+
+		////////////////
+
+		public static bool HasObjective( string title ) {
+			if( Main.netMode == NetmodeID.Server ) {
+				throw new ModHelpersException( "Server objectives not allowed." );
+			}
+
+			var myplayer = Main.LocalPlayer.GetModPlayer<ObjectivesPlayer>();
+
+			return myplayer.CompletedObjectivesPerWorld.Contains2D(
+				WorldHelpers.GetUniqueIdForCurrentWorld( true ),
+				title
+			);
+		}
+
+		////
+
 		public static Objective GetObjective( string title ) {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server objectives not allowed." );

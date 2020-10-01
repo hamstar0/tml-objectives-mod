@@ -11,12 +11,22 @@ namespace Objectives {
 	partial class ObjectivesPlayer : ModPlayer {
 		internal IDictionary<string, ISet<string>> CompletedObjectivesPerWorld = new Dictionary<string, ISet<string>>();
 
+		internal bool AreObjectivesLoaded = false;
 
+
+
+		////////////////
+
+		public override void Initialize() {
+			this.CompletedObjectivesPerWorld.Clear();
+			this.AreObjectivesLoaded = false;
+		}
 
 		////////////////
 
 		public override void Load( TagCompound tag ) {
 			this.CompletedObjectivesPerWorld.Clear();
+			this.AreObjectivesLoaded = true;
 
 			if( !tag.ContainsKey("world_count") ) {
 				return;
