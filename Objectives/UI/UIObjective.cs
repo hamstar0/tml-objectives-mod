@@ -48,11 +48,11 @@ namespace Objectives.UI {
 
 		public override void Update( GameTime gameTime ) {
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
-			if( !mngr.Objectives.ContainsKey(this.Objective.Title) ) {
+			if( !mngr.CurrentObjectives.ContainsKey(this.Objective.Title) ) {
 				return;
 			}
 
-			if( mngr.Objectives[ this.Objective.Title ].PercentComplete >= 1f ) {
+			if( mngr.CurrentObjectives[ this.Objective.Title ].PercentComplete >= 1f ) {
 				this.TitleElem.TextColor = Color.Gray;
 				this.DescriptionElem.TextColor = Color.Gray;
 			} else {
@@ -71,8 +71,8 @@ namespace Objectives.UI {
 			}
 
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
-			int thisOrder = mngr.ObjectiveOrderByName[ this.Objective.Title ];
-			int thatOrder = mngr.ObjectiveOrderByName[ otherObjectiveElem.Objective.Title ];
+			int thisOrder = mngr.CurrentObjectiveOrderByName[ this.Objective.Title ];
+			int thatOrder = mngr.CurrentObjectiveOrderByName[ otherObjectiveElem.Objective.Title ];
 
 			if( thisOrder > thatOrder ) {
 				return -1;

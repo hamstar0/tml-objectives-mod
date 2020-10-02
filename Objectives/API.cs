@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.PlayerData;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.World;
@@ -22,8 +23,8 @@ namespace Objectives {
 				return false;
 			}
 
-			var myplayer = Main.LocalPlayer.GetModPlayer<ObjectivesPlayer>();
-			return myplayer.AreObjectivesLoaded;
+			var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
+			return myplayer != null;
 		}
 
 
@@ -34,12 +35,8 @@ namespace Objectives {
 				throw new ModHelpersException( "Server objectives not allowed." );
 			}
 
-			var myplayer = Main.LocalPlayer.GetModPlayer<ObjectivesPlayer>();
-
-			return myplayer.CompletedObjectivesPerWorld.Contains2D(
-				WorldHelpers.GetUniqueIdForCurrentWorld( true ),
-				title
-			);
+			var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
+			return myplayer.IsObjectiveComplete( title );
 		}
 
 
@@ -52,7 +49,7 @@ namespace Objectives {
 
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
 
-			return mngr.Objectives.GetOrDefault( title );
+			return mngr.CurrentObjectives.GetOrDefault( title );
 		}
 
 
@@ -64,8 +61,8 @@ namespace Objectives {
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
 			var matches = new Dictionary<int, Objective>();
 
-			foreach( Objective objective in mngr.Objectives.Values ) {
-				int idx = mngr.ObjectiveOrder.IndexOf( objective.Title );
+			foreach( Objective objective in mngr.CurrentObjectives.Values ) {
+				int idx = mngr.CurrentObjectiveOrder.IndexOf( objective.Title );
 
 				if( criteria(objective, idx) ) {
 					matches[idx] = objective;

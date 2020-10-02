@@ -2,8 +2,8 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Classes.PlayerData;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.World;
 using HamstarHelpers.Services.Messages.Inbox;
 using HamstarHelpers.Services.UI.ControlPanel;
@@ -17,11 +17,10 @@ namespace Objectives.Logic {
 				return false;
 			}
 
-			var myplayer = Main.LocalPlayer.GetModPlayer<ObjectivesPlayer>();
-			string worldUid = WorldHelpers.GetUniqueIdForCurrentWorld( true );
+			var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
 
 			// Load data
-			bool isComplete = myplayer?.CompletedObjectivesPerWorld.Contains2D( worldUid, objective.Title ) ?? false;
+			bool isComplete = myplayer?.IsObjectiveComplete( objective.Title ) ?? false;
 			objective.Initialize( isComplete );
 
 			ObjectivesMod.Instance.ObjectivesTabUI.AddObjective( objective, order );
@@ -59,10 +58,8 @@ namespace Objectives.Logic {
 		public void ClearObjectives() {
 			this.ClearObjectivesData();
 
-			var myplayer = Main.LocalPlayer.GetModPlayer<ObjectivesPlayer>();
-			string worldUid = WorldHelpers.GetUniqueIdForCurrentWorld( true );
-
-			myplayer?.CompletedObjectivesPerWorld[ worldUid ].Clear();
+			var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
+			myplayer?.ClearCompletedObjectives();
 
 			ObjectivesMod.Instance.ObjectivesTabUI.ClearObjectives();
 		}

@@ -43,8 +43,8 @@ namespace Objectives.UI {
 			for( int idx = 0; idx<this.ObjectiveElemsList.Count; idx++ ) {
 				UIObjective obj = this.ObjectiveElemsList[idx] as UIObjective;
 
-				obj.Parent.RemoveChild( obj );
-				obj.Remove();
+				obj?.Parent?.RemoveChild( obj );
+				obj?.Remove();
 			}
 
 			this.ObjectiveElemsList.Clear();

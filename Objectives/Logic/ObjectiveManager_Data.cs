@@ -7,8 +7,8 @@ using Objectives.Definitions;
 namespace Objectives.Logic {
 	partial class ObjectiveManager : ILoadable {
 		public Objective[] GetObjectives() {
-			return this.ObjectiveOrder
-				.Select( title => this.Objectives[title] )
+			return this.CurrentObjectiveOrder
+				.Select( title => this.CurrentObjectives[title] )
 				.ToArray();
 		}
 
@@ -16,28 +16,28 @@ namespace Objectives.Logic {
 		////
 
 		private bool AddObjectiveData( Objective objective, ref int order, out string result ) {
-			if( this.Objectives.ContainsKey(objective.Title) ) {
+			if( this.CurrentObjectives.ContainsKey(objective.Title) ) {
 				result = "Objective named "+objective.Title+" already defined.";
 				return false;
 			}
 
 			if( order < 0 ) {
-				order = this.ObjectiveOrder.Count;
-			} else if( order > this.ObjectiveOrder.Count ) {
+				order = this.CurrentObjectiveOrder.Count;
+			} else if( order > this.CurrentObjectiveOrder.Count ) {
 				result = "Objective's "+objective.Title+" order (#"+order+") is out of range.";
 				return false;
 			}
 
-			this.Objectives[ objective.Title ] = objective;
+			this.CurrentObjectives[ objective.Title ] = objective;
 
-			this.ObjectiveOrder.Insert( order, objective.Title );
+			this.CurrentObjectiveOrder.Insert( order, objective.Title );
 
-			this.ObjectiveOrderByName[ objective.Title ] = order;
+			this.CurrentObjectiveOrderByName[ objective.Title ] = order;
 
-			int count = this.ObjectiveOrder.Count;
+			int count = this.CurrentObjectiveOrder.Count;
 			for( int i=order+1; i<count; i++ ) {
-				string title = this.ObjectiveOrder[i];
-				this.ObjectiveOrderByName[ title ] += 1;
+				string title = this.CurrentObjectiveOrder[i];
+				this.CurrentObjectiveOrderByName[ title ] += 1;
 			}
 
 			result = "Success.";
@@ -45,29 +45,29 @@ namespace Objectives.Logic {
 		}
 
 		private void RemoveObjectiveData( string title ) {
-			if( !this.ObjectiveOrderByName.TryGetValue(title, out int idx) ) {
+			if( !this.CurrentObjectiveOrderByName.TryGetValue(title, out int idx) ) {
 				idx = -1;
 			}
 
-			this.Objectives.TryRemove( title, out Objective _ );
-			this.ObjectiveOrder.Remove( title );
-			this.ObjectiveOrderByName.TryRemove( title, out int __ );
+			this.CurrentObjectives.TryRemove( title, out Objective _ );
+			this.CurrentObjectiveOrder.Remove( title );
+			this.CurrentObjectiveOrderByName.TryRemove( title, out int __ );
 
 			if( idx == -1 ) {
 				return;
 			}
 
-			int count = this.ObjectiveOrderByName.Count;
+			int count = this.CurrentObjectiveOrderByName.Count;
 			for( int i=idx; i<count; i++ ) {
-				string next = this.ObjectiveOrder[i];
-				this.ObjectiveOrderByName[ next ] -= 1;
+				string next = this.CurrentObjectiveOrder[i];
+				this.CurrentObjectiveOrderByName[ next ] -= 1;
 			}
 		}
 
 		private void ClearObjectivesData() {
-			this.Objectives.Clear();
-			this.ObjectiveOrder.Clear();
-			this.ObjectiveOrderByName.Clear();
+			this.CurrentObjectives.Clear();
+			this.CurrentObjectiveOrder.Clear();
+			this.CurrentObjectiveOrderByName.Clear();
 		}
 	}
 }

@@ -12,11 +12,11 @@ namespace Objectives.Logic {
 
 		////////////////
 
-		public ConcurrentDictionary<string, Objective> Objectives { get; } = new ConcurrentDictionary<string, Objective>();
+		public ConcurrentDictionary<string, Objective> CurrentObjectives { get; } = new ConcurrentDictionary<string, Objective>();
 
-		public IList<string> ObjectiveOrder { get; } = new List<string>();
+		public IList<string> CurrentObjectiveOrder { get; } = new List<string>();
 
-		public ConcurrentDictionary<string, int> ObjectiveOrderByName { get; } = new ConcurrentDictionary<string, int>();
+		public ConcurrentDictionary<string, int> CurrentObjectiveOrderByName { get; } = new ConcurrentDictionary<string, int>();
 
 
 
@@ -38,7 +38,7 @@ namespace Objectives.Logic {
 				return;
 			}
 
-			foreach( Objective obj in this.Objectives.Values ) {
+			foreach( Objective obj in this.CurrentObjectives.Values ) {
 				obj.Update_Internal();
 			}
 		}
