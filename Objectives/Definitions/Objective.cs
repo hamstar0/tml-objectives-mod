@@ -61,20 +61,24 @@ namespace Objectives.Definitions {
 
 		////////////////
 
-		internal void Update_Internal() {
+		internal bool Update_Internal() {
+			bool isNewlyCompleted = false;
+
 			if( !this.IsComplete ) {
 				this.PercentComplete = this.ComputeCompletionPercent();
 			}
 
 			if( this.IsComplete ) {
 				var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
-				myplayer.RecordCompletedObjective( this.Title );
+				isNewlyCompleted = myplayer.RecordCompletedObjective( this.Title );
 
 				if( !this.HasAlerted ) {
 					Main.NewText( "Completed objective: "+this.Title, Color.Lime );
 					this.HasAlerted = true;
 				}
 			}
+
+			return isNewlyCompleted;
 		}
 	}
 }

@@ -51,13 +51,14 @@ namespace Objectives {
 		}
 
 
-		public void RecordCompletedObjective( string objectiveTitle ) {
+		public bool RecordCompletedObjective( string objectiveTitle ) {
 			string worldUid = WorldHelpers.GetUniqueIdForCurrentWorld( true );
 
 			if( !this.CompletedObjectivesPerWorld.ContainsKey( worldUid ) ) {
 				this.CompletedObjectivesPerWorld[ worldUid ] = new HashSet<string>();
 			}
-			this.CompletedObjectivesPerWorld[worldUid].Add( objectiveTitle );
+
+			return this.CompletedObjectivesPerWorld[worldUid].Add( objectiveTitle );
 //LogHelpers.Log( "RECORD "+worldUid+", "+objectiveTitle+", this: "+this.GetHashCode());
 //LogHelpers.Log( "RECORD "+string.Join(", ", this.CompletedObjectivesPerWorld.Select(kv=>kv.Key+":"+string.Join(",",kv.Value))) );
 		}

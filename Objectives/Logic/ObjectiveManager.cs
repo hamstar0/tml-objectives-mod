@@ -18,6 +18,8 @@ namespace Objectives.Logic {
 
 		public ConcurrentDictionary<string, int> CurrentObjectiveOrderByName { get; } = new ConcurrentDictionary<string, int>();
 
+		public ConcurrentDictionary<string, ObjectivesAPI.SubscriptionEvent> Subscribers { get; } = new ConcurrentDictionary<string, ObjectivesAPI.SubscriptionEvent>();
+
 
 
 		////////////////
@@ -39,7 +41,9 @@ namespace Objectives.Logic {
 			}
 
 			foreach( Objective obj in this.CurrentObjectives.Values ) {
-				obj.Update_Internal();
+				if( obj.Update_Internal() ) {
+					this.NotifySubscribers( obj, false );
+				}
 			}
 		}
 	}

@@ -12,7 +12,7 @@ using Objectives.Logic;
 
 
 namespace Objectives {
-	public class ObjectivesAPI {
+	public partial class ObjectivesAPI {
 		public static bool AreObjectivesLoadedForCurrentPlayer() {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server has no player." );
@@ -69,7 +69,7 @@ namespace Objectives {
 			foreach( Objective objective in mngr.CurrentObjectives.Values ) {
 				int idx = mngr.CurrentObjectiveOrder.IndexOf( objective.Title );
 
-				if( criteria(objective, idx) ) {
+				if( criteria( objective, idx ) ) {
 					matches[idx] = objective;
 				}
 			}
