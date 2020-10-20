@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json.Linq;
 using HamstarHelpers.Classes.PlayerData;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.World;
-using Newtonsoft.Json.Linq;
+
 
 namespace Objectives {
 	partial class ObjectivesCustomPlayer : CustomPlayerData {

@@ -7,7 +7,6 @@ using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.PlayerData;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.World;
 using Objectives.Definitions;
 using Objectives.Logic;
 
@@ -30,6 +29,12 @@ namespace Objectives {
 
 		////////////////
 
+		/// <summary>
+		/// Indicates if an objective is complete. Objective does not need to have been declared for player to remember
+		/// having finished it previously.
+		/// </summary>
+		/// <param name="title"></param>
+		/// <returns></returns>
 		public static bool IsFinishedObjective( string title ) {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server objectives not allowed." );
