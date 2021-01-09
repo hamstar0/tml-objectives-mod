@@ -19,7 +19,7 @@ namespace Objectives.Logic {
 			var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
 
 			// Load data
-			bool isComplete = myplayer?.IsObjectiveComplete( objective.Title ) ?? false;
+			bool isComplete = myplayer?.IsObjectiveByNameComplete( objective.Title ) ?? false;
 			objective.Initialize( isComplete );
 
 			ObjectivesMod.Instance.ObjectivesTabUI.AddObjective( objective, order );

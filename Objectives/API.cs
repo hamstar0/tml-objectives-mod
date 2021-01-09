@@ -34,18 +34,18 @@ namespace Objectives {
 		////////////////
 
 		/// <summary>
-		/// Indicates if an objective is complete. Objective does not need to have been declared for player to remember
+		/// Indicates if an objective is complete. Objective does not need to be currently declared for player to remember
 		/// having finished it previously.
 		/// </summary>
 		/// <param name="title"></param>
 		/// <returns></returns>
-		public static bool IsFinishedObjective( string title ) {
+		public static bool HasRecordedObjectiveByNameAsFinished( string title ) {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server objectives not allowed." );
 			}
 
 			var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
-			return myplayer.IsObjectiveComplete( title );
+			return myplayer.IsObjectiveByNameComplete( title );
 		}
 
 

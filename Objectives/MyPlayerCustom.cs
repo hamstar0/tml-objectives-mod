@@ -41,7 +41,7 @@ namespace Objectives {
 
 		////////////////
 
-		public bool IsObjectiveComplete( string objectiveTitle ) {
+		public bool IsObjectiveByNameComplete( string objectiveTitle ) {
 			string worldUid = WorldHelpers.GetUniqueIdForCurrentWorld( true );
 
 			if( !this.CompletedObjectivesPerWorld.ContainsKey(worldUid) ) {
