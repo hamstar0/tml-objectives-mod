@@ -13,6 +13,10 @@ using Objectives.Logic;
 
 namespace Objectives {
 	public partial class ObjectivesAPI {
+		/// <summary>
+		/// Indicates the current, local player has their objectives loaded.
+		/// </summary>
+		/// <returns></returns>
 		public static bool AreObjectivesLoadedForCurrentPlayer() {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server has no player." );
@@ -47,6 +51,9 @@ namespace Objectives {
 
 		////////////////
 
+		/// <summary></summary>
+		/// <param name="title"></param>
+		/// <returns></returns>
 		public static Objective GetObjective( string title ) {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server objectives not allowed." );
@@ -58,6 +65,11 @@ namespace Objectives {
 		}
 
 
+		/// <summary>
+		/// Gets a set of objectives according to a given criteria.
+		/// </summary>
+		/// <param name="criteria">Accepts an objective to test and its order index as parameters. Returns `true` if valid.</param>
+		/// <returns>Objectives mapped to their internal order indices.</returns>
 		public static IDictionary<int, Objective> GetObjectives( Func<Objective, int, bool> criteria ) {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server objectives not allowed." );
@@ -70,7 +82,7 @@ namespace Objectives {
 				int idx = mngr.CurrentObjectiveOrder.IndexOf( objective.Title );
 
 				if( criteria( objective, idx ) ) {
-					matches[idx] = objective;
+					matches[ idx ] = objective;
 				}
 			}
 
@@ -80,6 +92,12 @@ namespace Objectives {
 
 		////////////////
 
+		/// <summary></summary>
+		/// <param name="objective"></param>
+		/// <param name="order">Priority of objective.</param>
+		/// <param name="alertPlayer">Creates an inbox message.</param>
+		/// <param name="result">Output message to indicate error type, or else `Success.`</param>
+		/// <returns>`true` if objective isn't already defined and is being given a valid order index.</returns>
 		public static bool AddObjective( Objective objective, int order, bool alertPlayer, out string result ) {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server objectives not allowed." );
@@ -92,6 +110,8 @@ namespace Objectives {
 
 		////
 
+		/// <summary></summary>
+		/// <param name="title"></param>
 		public static void RemoveObjective( string title ) {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server objectives not allowed." );
@@ -104,6 +124,7 @@ namespace Objectives {
 
 		////
 
+		/// <summary></summary>
 		public static void ClearObjectives() {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server objectives not allowed." );
