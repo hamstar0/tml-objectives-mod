@@ -89,7 +89,9 @@ namespace Objectives.UI {
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
 
-			float perc = this.Objective.PercentComplete;
+			float perc = this.Objective.PercentComplete.HasValue
+				? this.Objective.PercentComplete.Value
+				: 0f;
 
 			if( perc > 0f && perc < 1f ) {
 				CalculatedStyle style = this.GetDimensions();

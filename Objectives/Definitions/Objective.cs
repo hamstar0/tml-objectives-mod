@@ -20,9 +20,11 @@ namespace Objectives.Definitions {
 
 		////
 
-		public float PercentComplete { get; internal set; } = 0f;
+		public float? PercentComplete { get; internal set; } = null;
 
-		public bool IsComplete => this.PercentComplete >= 1f;
+		public bool? IsComplete => this.PercentComplete.HasValue
+			? this.PercentComplete.Value >= 1f
+			: (bool?)null;
 
 
 
@@ -49,7 +51,7 @@ namespace Objectives.Definitions {
 		protected abstract IDictionary<string, float> ComputeCompletionStatus();
 
 
-		private float ComputeCompletionPercent() {
+		public float ComputeCompletionPercent() {
 			IDictionary<string, float> status = this.ComputeCompletionStatus();
 			if( status.Count == 0 ) {
 				return 0f;
@@ -64,11 +66,11 @@ namespace Objectives.Definitions {
 		internal bool Update_Internal() {
 			bool isNewlyCompleted = false;
 
-			if( !this.IsComplete ) {
+			if( !this.IsComplete.HasValue || !this.IsComplete.Value ) {
 				this.PercentComplete = this.ComputeCompletionPercent();
 			}
 
-			if( this.IsComplete ) {
+			if( this.IsComplete.Value ) {
 				var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
 				isNewlyCompleted = myplayer.RecordCompletedObjective( this.Title );
 

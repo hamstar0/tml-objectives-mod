@@ -19,12 +19,12 @@ namespace Objectives.Logic {
 			var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
 
 			// Load data
-			bool isComplete = myplayer?.IsObjectiveByNameComplete( objective.Title ) ?? false;
-			objective.Initialize( isComplete );
+			bool isPrevComplete = myplayer?.IsObjectiveByNameComplete( objective.Title ) ?? false;
+			objective.Initialize( isPrevComplete );
 
-			ObjectivesMod.Instance.ObjectivesTabUI.AddObjective( objective, order );
+			ObjectivesMod.Instance.ObjectivesTabUI.AddObjective( objective, order );	// Initializes objective
 
-			if( !objective.IsComplete && alertPlayer ) {
+			if( !objective.IsComplete.Value && alertPlayer ) {
 				InboxMessages.SetMessage(
 					which: "ObjectivesAlert",
 					msg: "New objective(s) added!",
@@ -70,7 +70,10 @@ namespace Objectives.Logic {
 
 		public void NotifySubscribers( Objective objective, bool isNew ) {
 			foreach( ObjectivesAPI.SubscriptionEvent evt in this.Subscribers.Values ) {
-				evt.Invoke( objective.Title, isNew, objective.IsComplete );
+				bool isComplete = objective.IsComplete.HasValue
+					? objective.IsComplete.Value
+					: false;
+				evt.Invoke( objective.Title, isNew, isComplete );
 			}
 		}
 	}
