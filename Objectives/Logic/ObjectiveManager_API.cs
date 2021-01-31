@@ -49,20 +49,31 @@ namespace Objectives.Logic {
 		}
 
 
-		public void RemoveObjective( string title ) {
+		public void RemoveObjective( string title, bool forceIncomplete ) {
 			this.RemoveObjectiveData( title );
 
-			ObjectivesMod.Instance.ObjectivesTabUI.RemoveObjective( title );
+			if( forceIncomplete ) {
+				var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
+				myplayer.ForgetCompletedObjective( title );
+			}
+
+			ObjectivesMod.Instance
+				.ObjectivesTabUI
+				.RemoveObjective( title );
 		}
 
 
-		public void ClearObjectives() {
+		public void ClearObjectives( bool forceIncomplete ) {
 			this.ClearObjectivesData();
 
-			var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
-			myplayer?.ClearCompletedObjectives();
+			if( forceIncomplete ) {
+				var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
+				myplayer?.ClearCompletedObjectives();
+			}
 
-			ObjectivesMod.Instance.ObjectivesTabUI.ClearObjectives();
+			ObjectivesMod.Instance
+				.ObjectivesTabUI
+				.ClearObjectives();
 		}
 
 

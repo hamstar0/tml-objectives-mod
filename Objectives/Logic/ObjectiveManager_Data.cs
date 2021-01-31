@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Terraria;
 using HamstarHelpers.Classes.Loadable;
 using Objectives.Definitions;
 

@@ -112,27 +112,29 @@ namespace Objectives {
 
 		/// <summary></summary>
 		/// <param name="title"></param>
-		public static void RemoveObjective( string title ) {
+		/// <param name="forceIncomplete"></param>
+		public static void RemoveObjective( string title, bool forceIncomplete ) {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server objectives not allowed." );
 			}
 
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
 
-			mngr.RemoveObjective( title );
+			mngr.RemoveObjective( title, forceIncomplete );
 		}
 
 		////
 
 		/// <summary></summary>
-		public static void ClearObjectives() {
+		/// <param name="forceIncomplete"></param>
+		public static void ClearObjectives( bool forceIncomplete ) {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server objectives not allowed." );
 			}
 
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
 
-			mngr.ClearObjectives();
+			mngr.ClearObjectives( forceIncomplete );
 		}
 	}
 }

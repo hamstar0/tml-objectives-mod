@@ -32,7 +32,7 @@ namespace Objectives {
 		protected override object OnExit() {
 			var data = new Dictionary<string, HashSet<string>>( this.CompletedObjectivesPerWorld );
 
-			ObjectivesAPI.ClearObjectives();
+			ObjectivesAPI.ClearObjectives( false );
 			
 //LogHelpers.Log( "EXIT "+string.Join(", ", data.Select(kv=>kv.Key+":"+string.Join(",",kv.Value))) );
 			return data;
@@ -61,6 +61,17 @@ namespace Objectives {
 			return this.CompletedObjectivesPerWorld[worldUid].Add( objectiveTitle );
 //LogHelpers.Log( "RECORD "+worldUid+", "+objectiveTitle+", this: "+this.GetHashCode());
 //LogHelpers.Log( "RECORD "+string.Join(", ", this.CompletedObjectivesPerWorld.Select(kv=>kv.Key+":"+string.Join(",",kv.Value))) );
+		}
+
+		
+		public bool ForgetCompletedObjective( string objectiveTitle ) {
+			string worldUid = WorldHelpers.GetUniqueIdForCurrentWorld( true );
+
+			if( !this.CompletedObjectivesPerWorld.ContainsKey( worldUid ) ) {
+				return false;
+			}
+
+			return this.CompletedObjectivesPerWorld[ worldUid ].Remove( objectiveTitle );
 		}
 
 
