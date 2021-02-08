@@ -10,7 +10,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Draw;
 using Objectives.Definitions;
 using Objectives.Logic;
-
+using ReLogic.Graphics;
 
 namespace Objectives.UI {
 	partial class UIObjective : UIThemedPanel {
@@ -93,10 +93,10 @@ namespace Objectives.UI {
 				? this.Objective.PercentComplete.Value
 				: 0f;
 
-			if( perc > 0f && perc < 1f ) {
-				CalculatedStyle style = this.GetDimensions();
-				Rectangle rect = style.ToRectangle();
+			CalculatedStyle style = this.GetDimensions();
+			Rectangle rect = style.ToRectangle();
 
+			if( perc > 0f && perc < 1f ) {
 				rect.X += 8;
 				rect.Y += 56;
 				rect.Width -= 16;
@@ -118,6 +118,25 @@ namespace Objectives.UI {
 					borderColor: Color.White,
 					rect: rect,
 					borderWidth: 2
+				);
+			}
+
+			if( perc >= 1f ) {
+				Vector2 dim = Main.fontMouseText.MeasureString( "Complete" );
+
+				sb.DrawString(
+					spriteFont: Main.fontMouseText,
+					text: "Complete",
+					position: new Vector2(
+						rect.X + (rect.Width / 2),
+						rect.Y + (rect.Height / 2)
+					),
+					color: Color.Lime * 0.5f,
+					rotation: 0f,
+					origin: dim * 0.5f,
+					scale: 2.5f,
+					effects: SpriteEffects.None,
+					layerDepth: 0f
 				);
 			}
 		}
