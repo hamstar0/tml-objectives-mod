@@ -122,10 +122,10 @@ namespace Objectives.UI {
 			}
 
 			if( perc >= 1f ) {
-				Vector2 dim = Main.fontMouseText.MeasureString( "Complete" );
+				Vector2 dim = Main.fontDeathText.MeasureString( "Complete" );
 
 				sb.DrawString(
-					spriteFont: Main.fontMouseText,
+					spriteFont: Main.fontDeathText,
 					text: "Complete",
 					position: new Vector2(
 						rect.X + (rect.Width / 2),
@@ -134,7 +134,7 @@ namespace Objectives.UI {
 					color: Color.Lime * 0.5f,
 					rotation: 0f,
 					origin: dim * 0.5f,
-					scale: 2.5f,
+					scale: 1.25f,
 					effects: SpriteEffects.None,
 					layerDepth: 0f
 				);
