@@ -99,6 +99,10 @@ namespace Objectives {
 		/// <param name="result">Output message to indicate error type, or else `Success.`</param>
 		/// <returns>`true` if objective isn't already defined and is being given a valid order index.</returns>
 		public static bool AddObjective( Objective objective, int order, bool alertPlayer, out string result ) {
+			if( objective == null ) {
+				throw new ModHelpersException( "Non-null objectives required." );
+			}
+
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "Server objectives not allowed." );
 			}
