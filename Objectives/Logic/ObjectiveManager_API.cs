@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Classes.PlayerData;
 using HamstarHelpers.Helpers.Debug;
@@ -41,6 +42,8 @@ namespace Objectives.Logic {
 				ControlPanelTabs.AddTabAlert( ObjectivesMod.ControlPanelName );
 
 				Main.NewText( "New objective added: " + objective.Title, Color.Yellow );
+
+				Main.PlaySound( SoundID.Chat, Main.LocalPlayer.MountedCenter );
 			}
 
 			this.NotifySubscribers( objective, true );

@@ -14,7 +14,7 @@ using Objectives.Logic;
 namespace Objectives {
 	public partial class ObjectivesAPI {
 		/// <summary>
-		/// Indicates the current, local player has their objectives loaded.
+		/// Indicates if the current, local player has their objectives loaded.
 		/// </summary>
 		/// <returns></returns>
 		public static bool AreObjectivesLoadedForCurrentPlayer() {
@@ -92,10 +92,10 @@ namespace Objectives {
 
 		////////////////
 
-		/// <summary></summary>
+		/// <summary>Adds an objective to the list.</summary>
 		/// <param name="objective"></param>
 		/// <param name="order">Priority of objective.</param>
-		/// <param name="alertPlayer">Creates an inbox message.</param>
+		/// <param name="alertPlayer">Creates an inbox message. Only alerts players for non-completed objectives.</param>
 		/// <param name="result">Output message to indicate error type, or else `Success.`</param>
 		/// <returns>`true` if objective isn't already defined and is being given a valid order index.</returns>
 		public static bool AddObjective( Objective objective, int order, bool alertPlayer, out string result ) {
