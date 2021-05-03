@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using Terraria;
+using Terraria.ID;
 using HamstarHelpers.Classes.PlayerData;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.World;
@@ -32,9 +34,11 @@ namespace Objectives {
 		protected override object OnExit() {
 			var data = new Dictionary<string, HashSet<string>>( this.CompletedObjectivesPerWorld );
 
-			ObjectivesAPI.ClearObjectives( false );
-			
-//LogHelpers.Log( "EXIT "+string.Join(", ", data.Select(kv=>kv.Key+":"+string.Join(",",kv.Value))) );
+			if( Main.netMode != NetmodeID.Server ) {
+				ObjectivesAPI.ClearObjectives( false );
+			}
+
+			//LogHelpers.Log( "EXIT "+string.Join(", ", data.Select(kv=>kv.Key+":"+string.Join(",",kv.Value))) );
 			return data;
 		}
 
