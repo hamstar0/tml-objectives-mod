@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Players;
-using HamstarHelpers.Helpers.NPCs;
+using ModLibsGeneral.Libraries.NPCs;
+using ModLibsGeneral.Libraries.Players;
 using Objectives.Definitions;
 
 
@@ -32,7 +32,7 @@ namespace Objectives.Commands {
 					//description: "He's let in one too many zombies",
 					title: "Kill A Blue Slime",
 					description: "What even is a slime?",
-					condition: ( obj ) => NPCHelpers.CurrentPlayerKillsOfBannerNpc(NPCID.BlueSlime) > 0
+					condition: ( obj ) => NPCLibraries.CurrentPlayerKillsOfBannerNpc(NPCID.BlueSlime) > 0
 				),
 				order: -1,
 				alertPlayer: false,
@@ -44,7 +44,7 @@ namespace Objectives.Commands {
 					title: "Collect 50 Rings",
 					description: "Wrong game.",
 					units: 50,
-					condition: ( obj ) => (float)PlayerItemFinderHelpers.CountTotalOfEach(
+					condition: ( obj ) => (float)PlayerItemFinderLibraries.CountTotalOfEach(
 						Main.LocalPlayer,
 						new HashSet<int> { ItemID.GoldRing },
 						false
@@ -69,7 +69,7 @@ namespace Objectives.Commands {
 				objective: new FlatObjective(
 					title: "Collect A Blueberry",
 					description: "Don't ask.",
-					condition: ( obj ) => (float)PlayerItemFinderHelpers.CountTotalOfEach(
+					condition: ( obj ) => (float)PlayerItemFinderLibraries.CountTotalOfEach(
 						Main.LocalPlayer,
 						new HashSet<int> { ItemID.BlueBerries },
 						false
@@ -84,7 +84,7 @@ namespace Objectives.Commands {
 				objective: new FlatObjective(
 					title: "Craft A Molotov",
 					description: "Viva la revolution!",
-					condition: ( obj ) => (float)PlayerItemFinderHelpers.CountTotalOfEach(
+					condition: ( obj ) => (float)PlayerItemFinderLibraries.CountTotalOfEach(
 						Main.LocalPlayer,
 						new HashSet<int> { ItemID.MolotovCocktail },
 						false
@@ -100,7 +100,7 @@ namespace Objectives.Commands {
 					title: "Kill 10 Squids",
 					description: "Thanks twerking Squidward. Some random squids must be punished now.",
 					units: 10,
-					condition: ( obj ) => (float)NPCHelpers.CurrentPlayerKillsOfBannerNpc( NPCID.Squid ) / 10f
+					condition: ( obj ) => (float)NPCLibraries.CurrentPlayerKillsOfBannerNpc( NPCID.Squid ) / 10f
 				),
 				order: -1,
 				alertPlayer: false,
@@ -112,7 +112,7 @@ namespace Objectives.Commands {
 					title: "Collect 99 Dirt Blocks",
 					description: "Mission impossible?",
 					units: 99,
-					condition: ( obj ) => (float)PlayerItemFinderHelpers.CountTotalOfEach(
+					condition: ( obj ) => (float)PlayerItemFinderLibraries.CountTotalOfEach(
 						Main.LocalPlayer,
 						new HashSet<int> { ItemID.DirtBlock },
 						false

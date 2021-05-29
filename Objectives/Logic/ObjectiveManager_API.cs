@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Classes.PlayerData;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.Messages.Inbox;
-using HamstarHelpers.Services.UI.ControlPanel;
+using ModLibsCore.Classes.Loadable;
+using ModLibsCore.Classes.PlayerData;
+using ModLibsCore.Libraries.Debug;
+using ModLibsInterMod.Libraries.Mods.APIMirrors.ModHelpersAPIMirrors;
+using ModControlPanel.Services.UI.ControlPanel;
 using Objectives.Definitions;
 
 
@@ -26,7 +26,7 @@ namespace Objectives.Logic {
 			ObjectivesMod.Instance.ObjectivesTabUI.AddObjective( objective, order );	// Initializes objective
 
 			if( !objective.IsComplete.Value && alertPlayer ) {
-				InboxMessages.SetMessage(
+				InboxAPIMirrorsLibraries.SetMessage(
 					which: "ObjectivesAlert",
 					msg: "New objective(s) added!",
 					forceUnread: true,

@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.GameInput;
 using Terraria.ModLoader;
-using HamstarHelpers.Services.UI.ControlPanel;
+using ModControlPanel.Services.UI.ControlPanel;
 
 
 namespace Objectives {

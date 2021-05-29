@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using HamstarHelpers.Classes.Loadable;
+using ModLibsCore.Classes.Loadable;
 using Objectives.Definitions;
 
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Terraria;
-using HamstarHelpers.Classes.Loadable;
+using ModLibsCore.Classes.Loadable;
 using Objectives.Definitions;
 
 

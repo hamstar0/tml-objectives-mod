@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using HamstarHelpers.Classes.Errors;
+using ModLibsCore.Classes.Errors;
 
 
 namespace Objectives.Definitions {

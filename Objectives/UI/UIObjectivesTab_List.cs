@@ -1,8 +1,8 @@
 ﻿using System;
 using Terraria;
 using Terraria.UI;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Internals.ControlPanel;
+using ModLibsCore.Libraries.Debug;
+using ModControlPanel.Internals.ControlPanel;
 using Objectives.Definitions;
 
 

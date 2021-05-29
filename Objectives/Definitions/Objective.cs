@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
-using HamstarHelpers.Classes.PlayerData;
-using HamstarHelpers.Helpers.Debug;
+using ModLibsCore.Classes.PlayerData;
+using ModLibsCore.Libraries.Debug;
 
 
 namespace Objectives.Definitions {

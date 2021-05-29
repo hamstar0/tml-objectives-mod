@@ -4,9 +4,9 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Classes.PlayerData;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.World;
+using ModLibsCore.Classes.PlayerData;
+using ModLibsCore.Libraries.Debug;
+using ModLibsCore.Libraries.World;
 
 
 namespace Objectives {
@@ -23,12 +23,12 @@ namespace Objectives {
 			}
 
 			if( data != null ) {
-//LogHelpers.Log( "ENTER "+string.Join(", ", this.CompletedObjectivesPerWorld.Select(kv=>kv.Key+":"+string.Join(",",kv.Value))) );
+//LogLibraries.Log( "ENTER "+string.Join(", ", this.CompletedObjectivesPerWorld.Select(kv=>kv.Key+":"+string.Join(",",kv.Value))) );
 				this.CompletedObjectivesPerWorld = ((JObject)data)
 					.ToObject<Dictionary<string, string[]>>()
 					.ToDictionary( kv=>kv.Key, kv=>new HashSet<string>( kv.Value ) );
 			}
-//else { LogHelpers.Log( "ENTER!" ); }
+//else { LogLibraries.Log( "ENTER!" ); }
 		}
 
 		protected override object OnExit() {
@@ -38,7 +38,7 @@ namespace Objectives {
 				ObjectivesAPI.ClearObjectives( false );
 			}
 
-			//LogHelpers.Log( "EXIT "+string.Join(", ", data.Select(kv=>kv.Key+":"+string.Join(",",kv.Value))) );
+			//LogLibraries.Log( "EXIT "+string.Join(", ", data.Select(kv=>kv.Key+":"+string.Join(",",kv.Value))) );
 			return data;
 		}
 
@@ -46,7 +46,7 @@ namespace Objectives {
 		////////////////
 
 		public bool IsObjectiveByNameComplete( string objectiveTitle ) {
-			string worldUid = WorldHelpers.GetUniqueIdForCurrentWorld( true );
+			string worldUid = WorldIdentityLibraries.GetUniqueIdForCurrentWorld( true );
 
 			if( !this.CompletedObjectivesPerWorld.ContainsKey(worldUid) ) {
 				return false;
@@ -56,20 +56,20 @@ namespace Objectives {
 
 
 		public bool RecordCompletedObjective( string objectiveTitle ) {
-			string worldUid = WorldHelpers.GetUniqueIdForCurrentWorld( true );
+			string worldUid = WorldIdentityLibraries.GetUniqueIdForCurrentWorld( true );
 
 			if( !this.CompletedObjectivesPerWorld.ContainsKey( worldUid ) ) {
 				this.CompletedObjectivesPerWorld[ worldUid ] = new HashSet<string>();
 			}
 
 			return this.CompletedObjectivesPerWorld[worldUid].Add( objectiveTitle );
-//LogHelpers.Log( "RECORD "+worldUid+", "+objectiveTitle+", this: "+this.GetHashCode());
-//LogHelpers.Log( "RECORD "+string.Join(", ", this.CompletedObjectivesPerWorld.Select(kv=>kv.Key+":"+string.Join(",",kv.Value))) );
+//LogLibraries.Log( "RECORD "+worldUid+", "+objectiveTitle+", this: "+this.GetHashCode());
+//LogLibraries.Log( "RECORD "+string.Join(", ", this.CompletedObjectivesPerWorld.Select(kv=>kv.Key+":"+string.Join(",",kv.Value))) );
 		}
 
 		
 		public bool ForgetCompletedObjective( string objectiveTitle ) {
-			string worldUid = WorldHelpers.GetUniqueIdForCurrentWorld( true );
+			string worldUid = WorldIdentityLibraries.GetUniqueIdForCurrentWorld( true );
 
 			if( !this.CompletedObjectivesPerWorld.ContainsKey( worldUid ) ) {
 				return false;
@@ -80,7 +80,7 @@ namespace Objectives {
 
 
 		public void ClearCompletedObjectives() {
-//LogHelpers.Log( "CLEAR" );
+//LogLibraries.Log( "CLEAR" );
 			this.CompletedObjectivesPerWorld.Clear();
 		}
 	}

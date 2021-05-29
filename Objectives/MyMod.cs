@@ -1,8 +1,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Services.UI.ControlPanel;
+using ModLibsUI.Classes.UI.Theme;
+using ModControlPanel.Services.UI.ControlPanel;
 using Objectives.UI;
 using Objectives.Logic;
 

@@ -4,13 +4,14 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.UI;
 using Terraria.ModLoader;
-using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Draw;
+using ModLibsUI.Classes.UI.Elements;
+using ModLibsUI.Classes.UI.Theme;
+using ModLibsCore.Libraries.Debug;
+using ModLibsGeneral.Libraries.Draw;
 using Objectives.Definitions;
 using Objectives.Logic;
 using ReLogic.Graphics;
+
 
 namespace Objectives.UI {
 	partial class UIObjective : UIThemedPanel {
@@ -105,14 +106,14 @@ namespace Objectives.UI {
 				Rectangle percRect = rect;
 				percRect.Width = (int)((float)percRect.Width * perc);
 
-				DrawHelpers.DrawBorderedRect(
+				DrawLibraries.DrawBorderedRect(
 					sb: sb,
 					bgColor: Color.Lime,
 					borderColor: null,
 					rect: percRect,
 					borderWidth: 2
 				);
-				DrawHelpers.DrawBorderedRect(
+				DrawLibraries.DrawBorderedRect(
 					sb: sb,
 					bgColor: null,
 					borderColor: Color.White,

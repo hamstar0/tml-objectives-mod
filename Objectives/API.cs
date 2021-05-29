@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Classes.PlayerData;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using ModLibsCore.Classes.Errors;
+using ModLibsCore.Classes.PlayerData;
+using ModLibsCore.Libraries.Debug;
+using ModLibsCore.Libraries.DotNET.Extensions;
 using Objectives.Definitions;
 using Objectives.Logic;
 
@@ -19,7 +19,7 @@ namespace Objectives {
 		/// <returns></returns>
 		public static bool AreObjectivesLoadedForCurrentPlayer() {
 			if( Main.netMode == NetmodeID.Server ) {
-				throw new ModHelpersException( "Server has no player." );
+				throw new ModLibsException( "Server has no player." );
 			}
 
 			if( Main.gameMenu ) {
@@ -41,7 +41,7 @@ namespace Objectives {
 		/// <returns></returns>
 		public static bool HasRecordedObjectiveByNameAsFinished( string title ) {
 			if( Main.netMode == NetmodeID.Server ) {
-				throw new ModHelpersException( "Server objectives not allowed." );
+				throw new ModLibsException( "Server objectives not allowed." );
 			}
 
 			var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
@@ -56,7 +56,7 @@ namespace Objectives {
 		/// <returns></returns>
 		public static Objective GetObjective( string title ) {
 			if( Main.netMode == NetmodeID.Server ) {
-				throw new ModHelpersException( "Server objectives not allowed." );
+				throw new ModLibsException( "Server objectives not allowed." );
 			}
 
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
@@ -72,7 +72,7 @@ namespace Objectives {
 		/// <returns>Objectives mapped to their internal order indices.</returns>
 		public static IDictionary<int, Objective> GetObjectives( Func<Objective, int, bool> criteria ) {
 			if( Main.netMode == NetmodeID.Server ) {
-				throw new ModHelpersException( "Server objectives not allowed." );
+				throw new ModLibsException( "Server objectives not allowed." );
 			}
 
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
@@ -100,11 +100,11 @@ namespace Objectives {
 		/// <returns>`true` if objective isn't already defined and is being given a valid order index.</returns>
 		public static bool AddObjective( Objective objective, int order, bool alertPlayer, out string result ) {
 			if( objective == null ) {
-				throw new ModHelpersException( "Non-null objectives required." );
+				throw new ModLibsException( "Non-null objectives required." );
 			}
 
 			if( Main.netMode == NetmodeID.Server ) {
-				throw new ModHelpersException( "Server objectives not allowed." );
+				throw new ModLibsException( "Server objectives not allowed." );
 			}
 
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
@@ -119,7 +119,7 @@ namespace Objectives {
 		/// <param name="forceIncomplete"></param>
 		public static void RemoveObjective( string title, bool forceIncomplete ) {
 			if( Main.netMode == NetmodeID.Server ) {
-				throw new ModHelpersException( "Server objectives not allowed." );
+				throw new ModLibsException( "Server objectives not allowed." );
 			}
 
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
@@ -133,7 +133,7 @@ namespace Objectives {
 		/// <param name="forceIncomplete"></param>
 		public static void ClearObjectives( bool forceIncomplete ) {
 			if( Main.netMode == NetmodeID.Server ) {
-				throw new ModHelpersException( "Server objectives not allowed." );
+				throw new ModLibsException( "Server objectives not allowed." );
 			}
 
 			var mngr = ModContent.GetInstance<ObjectiveManager>();

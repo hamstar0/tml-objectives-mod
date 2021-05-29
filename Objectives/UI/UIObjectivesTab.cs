@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.UI;
 using Terraria.GameContent.UI.Elements;
-using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Internals.ControlPanel;
+using ModLibsCore.Libraries.Debug;
+using ModLibsUI.Classes.UI.Theme;
+using ModControlPanel.Internals.ControlPanel;
 
 
 namespace Objectives.UI {
