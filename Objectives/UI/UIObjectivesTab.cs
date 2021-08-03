@@ -22,7 +22,7 @@ namespace Objectives.UI {
 
 		////////////////
 
-		public UIObjectivesTab( UITheme theme ) {
+		public UIObjectivesTab( UITheme theme ) : base( theme ) {
 			this.Theme = theme;
 
 			this.Width.Set( 0f, 1f );

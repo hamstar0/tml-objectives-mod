@@ -5,7 +5,6 @@ using Terraria.ID;
 using ModLibsCore.Classes.Loadable;
 using ModLibsCore.Classes.PlayerData;
 using ModLibsCore.Libraries.Debug;
-using ModLibsInterMod.Libraries.Mods.APIMirrors.ModHelpersAPIMirrors;
 using ModControlPanel.Services.UI.ControlPanel;
 using Objectives.Definitions;
 
@@ -13,7 +12,7 @@ using Objectives.Definitions;
 namespace Objectives.Logic {
 	partial class ObjectiveManager : ILoadable {
 		public bool AddObjective( Objective objective, int order, bool alertPlayer, out string result ) {
-			if( !this.AddObjectiveData( objective, ref order, out result ) ) {
+			if( !this.AddObjectiveData(objective, ref order, out result) ) {
 				return false;
 			}
 
@@ -26,20 +25,7 @@ namespace Objectives.Logic {
 			ObjectivesMod.Instance.ObjectivesTabUI.AddObjective( objective, order );	// Initializes objective
 
 			if( !objective.IsComplete.Value && alertPlayer ) {
-				InboxAPIMirrorsLibraries.SetMessage(
-					which: "ObjectivesAlert",
-					msg: "New objective(s) added!",
-					forceUnread: true,
-					onRun: ( isUnread ) => {
-						if( isUnread ) {
-							if( !ControlPanelTabs.IsDialogOpen() ) {
-								ControlPanelTabs.OpenTab( ObjectivesMod.ControlPanelName );
-							}
-						}
-					}
-				);
-
-				ControlPanelTabs.AddTabAlert( ObjectivesMod.ControlPanelName );
+				ControlPanelTabs.AddTabAlert( ObjectivesMod.ControlPanelName, true );
 
 				Main.NewText( "New objective added: " + objective.Title, Color.Yellow );
 
