@@ -23,9 +23,6 @@
     <Reference Include="ModLibsGeneral">
       <HintPath>..\..\..\Mod Libs\Mod Libs General\Project\ModLibsGeneral\bin\Release\net452\ModLibsGeneral.dll</HintPath>
     </Reference>
-    <Reference Include="ModLibsInterMod">
-      <HintPath>..\..\..\Mod Libs\Mod Libs Services Inter-Mod\Project\ModLibsInterMod\bin\Release\net452\ModLibsInterMod.dll</HintPath>
-    </Reference>
     <Reference Include="ModLibsUI">
       <HintPath>..\..\..\Mod Libs\Mod Libs Libraries UI\Project\ModLibsUI\bin\Release\net452\ModLibsUI.dll</HintPath>
     </Reference>

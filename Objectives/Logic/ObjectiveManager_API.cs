@@ -22,7 +22,9 @@ namespace Objectives.Logic {
 			bool isPrevComplete = myplayer?.IsObjectiveByNameComplete( objective.Title ) ?? false;
 			objective.Initialize( isPrevComplete );
 
-			ObjectivesMod.Instance.ObjectivesTabUI.AddObjective( objective, order );	// Initializes objective
+			ObjectivesMod.Instance
+				.ObjectivesTabUI
+				.AddObjective( objective, order );	// Initializes objective
 
 			if( !objective.IsComplete.Value && alertPlayer ) {
 				ControlPanelTabs.AddTabAlert( ObjectivesMod.ControlPanelName, true );

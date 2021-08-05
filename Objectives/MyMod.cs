@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ModLibsUI.Classes.UI.Theme;
+using ModControlPanel;
 using ModControlPanel.Services.UI.ControlPanel;
 using Objectives.UI;
 using Objectives.Logic;
@@ -51,8 +52,11 @@ namespace Objectives {
 		public override void PostSetupContent() {
 			if( !Main.dedServ && Main.netMode != NetmodeID.Server ) {
 				// Add player stats tab
-				this.ObjectivesTabUI = new UIObjectivesTab( UITheme.Vanilla );
-				ControlPanelTabs.AddTab( ObjectivesMod.ControlPanelName, this.ObjectivesTabUI );
+				ModControlPanelMod.Instance.OnControlPanelInitialize += () => {
+					this.ObjectivesTabUI = new UIObjectivesTab( UITheme.Vanilla );
+
+					ControlPanelTabs.AddTab( ObjectivesMod.ControlPanelName, this.ObjectivesTabUI );
+				};
 			}
 		}
 
