@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.GameInput;
 using Terraria.ModLoader;
-using ModControlPanel.Services.UI.ControlPanel;
+using ModUtilityPanels.Services.UI.UtilityPanels;
 
 
 namespace Objectives {
@@ -10,11 +10,11 @@ namespace Objectives {
 			var mymod = (ObjectivesMod)this.mod;
 
 			try {
-				if( mymod.ControlPanelHotkey != null && mymod.ControlPanelHotkey.JustPressed ) {
-					if( ControlPanelTabs.IsDialogOpen() ) {
-						ControlPanelTabs.CloseDialog();
+				if( mymod.UtilityPanelsHotkey != null && mymod.UtilityPanelsHotkey.JustPressed ) {
+					if( UtilityPanelsTabs.IsDialogOpen() ) {
+						UtilityPanelsTabs.CloseDialog();
 					} else {
-						ControlPanelTabs.OpenTab( ObjectivesMod.ControlPanelName );
+						UtilityPanelsTabs.OpenTab( ObjectivesMod.UtilityPanelsName );
 					}
 				}
 			} catch { }

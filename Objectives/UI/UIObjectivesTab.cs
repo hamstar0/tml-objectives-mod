@@ -6,11 +6,11 @@ using Terraria.UI;
 using Terraria.GameContent.UI.Elements;
 using ModLibsCore.Libraries.Debug;
 using ModLibsUI.Classes.UI.Theme;
-using ModControlPanel.Internals.ControlPanel;
+using ModUtilityPanels.Internals.UtilityPanels;
 
 
 namespace Objectives.UI {
-	partial class UIObjectivesTab : UIControlPanelTab {
+	partial class UIObjectivesTab : UIUtilityPanelsTab {
 		private IList<UIElement> ObjectiveElemsList = new List<UIElement>();
 
 		////

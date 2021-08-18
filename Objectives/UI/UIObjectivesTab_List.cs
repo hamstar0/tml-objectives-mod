@@ -2,12 +2,12 @@
 using Terraria;
 using Terraria.UI;
 using ModLibsCore.Libraries.Debug;
-using ModControlPanel.Internals.ControlPanel;
+using ModUtilityPanels.Internals.UtilityPanels;
 using Objectives.Definitions;
 
 
 namespace Objectives.UI {
-	partial class UIObjectivesTab : UIControlPanelTab {
+	partial class UIObjectivesTab : UIUtilityPanelsTab {
 		public void AddObjective( Objective objective, int order ) {
 			var objectiveItem = new UIObjective( objective );
 

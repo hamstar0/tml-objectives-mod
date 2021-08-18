@@ -5,7 +5,7 @@ using Terraria.ID;
 using ModLibsCore.Classes.Loadable;
 using ModLibsCore.Classes.PlayerData;
 using ModLibsCore.Libraries.Debug;
-using ModControlPanel.Services.UI.ControlPanel;
+using ModUtilityPanels.Services.UI.UtilityPanels;
 using Objectives.Definitions;
 
 
@@ -27,7 +27,7 @@ namespace Objectives.Logic {
 				.AddObjective( objective, order );	// Initializes objective
 
 			if( !objective.IsComplete.Value && alertPlayer ) {
-				ControlPanelTabs.AddTabAlert( ObjectivesMod.ControlPanelName, true );
+				UtilityPanelsTabs.AddTabAlert( ObjectivesMod.UtilityPanelsName, true );
 
 				Main.NewText( "New objective added: " + objective.Title, Color.Yellow );
 

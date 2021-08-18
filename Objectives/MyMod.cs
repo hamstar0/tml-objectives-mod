@@ -2,15 +2,15 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ModLibsUI.Classes.UI.Theme;
-using ModControlPanel;
-using ModControlPanel.Services.UI.ControlPanel;
+using ModUtilityPanels;
+using ModUtilityPanels.Services.UI.UtilityPanels;
 using Objectives.UI;
 using Objectives.Logic;
 
 
 namespace Objectives {
 	public class ObjectivesMod : Mod {
-		public const string ControlPanelName = "Objectives";
+		public const string UtilityPanelsName = "Objectives";
 
 
 		////
@@ -28,7 +28,7 @@ namespace Objectives {
 
 		////////////////
 
-		public ModHotKey ControlPanelHotkey { get; private set; }
+		public ModHotKey UtilityPanelsHotkey { get; private set; }
 
 
 		////////////////
@@ -46,16 +46,16 @@ namespace Objectives {
 		////////////////
 		
 		public override void Load() {
-			this.ControlPanelHotkey = this.RegisterHotKey( "Toggle Objectives", "OemTilde" );
+			this.UtilityPanelsHotkey = this.RegisterHotKey( "Toggle Objectives", "OemTilde" );
 		}
 
 		public override void PostSetupContent() {
 			if( !Main.dedServ && Main.netMode != NetmodeID.Server ) {
 				// Add player stats tab
-				ModControlPanelMod.Instance.OnControlPanelInitialize += () => {
+				ModUtilityPanelsMod.Instance.OnUtilityPanelsInitialize += () => {
 					this.ObjectivesTabUI = new UIObjectivesTab( UITheme.Vanilla );
 
-					ControlPanelTabs.AddTab( ObjectivesMod.ControlPanelName, this.ObjectivesTabUI );
+					UtilityPanelsTabs.AddTab( ObjectivesMod.UtilityPanelsName, this.ObjectivesTabUI );
 				};
 			}
 		}
