@@ -1,16 +1,16 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
 using Terraria;
 using Terraria.UI;
 using Terraria.ModLoader;
-using ModLibsUI.Classes.UI.Elements;
-using ModLibsUI.Classes.UI.Theme;
 using ModLibsCore.Libraries.Debug;
 using ModLibsGeneral.Libraries.Draw;
+using ModLibsUI.Classes.UI.Elements;
+using ModLibsUI.Classes.UI.Theme;
 using Objectives.Definitions;
 using Objectives.Logic;
-using ReLogic.Graphics;
 
 
 namespace Objectives.UI {
@@ -32,12 +32,12 @@ namespace Objectives.UI {
 
 			//
 
-			this.TitleElem = new UIThemedText( this.Theme, false, this.Objective.Title, 1.1f );
+			this.TitleElem = new UIThemedText( this.Theme, false, this.Objective.Title, true, 1.1f );
 			this.TitleElem.TextColor = Color.Yellow;
 			this.TitleElem.Width.Set( 0f, 1f );
 			this.Append( this.TitleElem );
 
-			this.DescriptionElem = new UIThemedText( this.Theme, false, this.Objective.Description, 0.8f );
+			this.DescriptionElem = new UIThemedText( this.Theme, false, this.Objective.Description, true, 0.8f );
 			this.DescriptionElem.TextColor = Color.White;
 			this.DescriptionElem.Top.Set( 24f, 0f );
 			this.DescriptionElem.Width.Set( 0f, 1f );
@@ -72,8 +72,23 @@ namespace Objectives.UI {
 			}
 
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
-			int thisOrder = mngr.CurrentObjectiveOrderByName[ this.Objective.Title ];
-			int thatOrder = mngr.CurrentObjectiveOrderByName[ otherObjectiveElem.Objective.Title ];
+			string thisTitle = this.Objective.Title;
+			string thatTitle = otherObjectiveElem.Objective.Title;
+
+			if( !mngr.CurrentObjectiveOrderByName.ContainsKey(thisTitle) ) {
+				if( !mngr.CurrentObjectiveOrderByName.ContainsKey(thatTitle) ) {
+					return 0;
+				} else {
+					return 1;
+				}
+			} else {
+				if( !mngr.CurrentObjectiveOrderByName.ContainsKey(thatTitle) ) {
+					return -1;
+				}
+			}
+
+			int thisOrder = mngr.CurrentObjectiveOrderByName[ thisTitle ];
+			int thatOrder = mngr.CurrentObjectiveOrderByName[ thatTitle ];
 
 			if( thisOrder > thatOrder ) {
 				return -1;
