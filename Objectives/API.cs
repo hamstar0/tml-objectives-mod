@@ -114,17 +114,23 @@ namespace Objectives {
 
 		////
 
+		[Obsolete( "use RemoveObjectiveIf", true )]
+		public static void RemoveObjective( string title, bool forceIncomplete ) {
+			ObjectivesAPI.RemoveObjectiveIf( title, forceIncomplete );
+		}
+
 		/// <summary></summary>
 		/// <param name="title"></param>
 		/// <param name="forceIncomplete"></param>
-		public static void RemoveObjective( string title, bool forceIncomplete ) {
+		/// <returns></returns>
+		public static bool RemoveObjectiveIf( string title, bool forceIncomplete ) {
 			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModLibsException( "Server objectives not allowed." );
 			}
 
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
 
-			mngr.RemoveObjective( title, forceIncomplete );
+			return mngr.RemoveObjectiveIf( title, forceIncomplete );
 		}
 
 		////
