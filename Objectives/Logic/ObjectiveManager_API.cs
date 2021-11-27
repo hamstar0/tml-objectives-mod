@@ -40,7 +40,12 @@ namespace Objectives.Logic {
 		}
 
 
+		[Obsolete( "use RemoveObjectiveIf", true )]
 		public void RemoveObjective( string title, bool forceIncomplete ) {
+			this.RemoveObjectiveIf( title, forceIncomplete );
+		}
+
+		public bool RemoveObjectiveIf( string title, bool forceIncomplete ) {
 			this.RemoveObjectiveData( title );
 
 			if( forceIncomplete ) {
@@ -48,7 +53,7 @@ namespace Objectives.Logic {
 				myplayer.ForgetCompletedObjective( title );
 			}
 
-			ObjectivesMod.Instance
+			return ObjectivesMod.Instance
 				.ObjectivesTabUI
 				.RemoveObjective( title );
 		}

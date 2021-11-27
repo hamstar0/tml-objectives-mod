@@ -20,23 +20,30 @@ namespace Objectives.UI {
 			this.Recalculate();
 		}
 
-		public void RemoveObjective( string title ) {
+		public bool RemoveObjective( string title ) {
+			bool found = false;
+
 			int idx;
 			for( idx=0; idx<this.ObjectiveElemsList.Count; idx++ ) {
 				UIObjective obj = this.ObjectiveElemsList[idx] as UIObjective;
 
 				if( obj.Objective.Title == title ) {
+					found = true;
 					break;
 				}
 			}
 
-			UIElement item = this.ObjectiveElemsList[ idx ];
-			this.ObjectiveElemsList.RemoveAt( idx );
+			if( found ) {
+				UIElement item = this.ObjectiveElemsList[ idx ];
+				this.ObjectiveElemsList.RemoveAt( idx );
 
-			this.ObjectivesDisplayElem?.Remove( item );
-			this.ObjectivesDisplayElem?.UpdateOrder();
+				this.ObjectivesDisplayElem?.Remove( item );
+				this.ObjectivesDisplayElem?.UpdateOrder();
 
-			this.Recalculate();
+				this.Recalculate();
+			}
+
+			return found;
 		}
 
 		public void ClearObjectives() {
