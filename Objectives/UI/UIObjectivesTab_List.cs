@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.UI;
 using ModLibsCore.Libraries.Debug;
-using ModUtilityPanels.Internals.UtilityPanels;
+using ModUtilityPanels.Classes.UI;
 using Objectives.Definitions;
 
 
