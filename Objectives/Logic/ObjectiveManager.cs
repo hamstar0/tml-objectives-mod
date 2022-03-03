@@ -26,7 +26,9 @@ namespace Objectives.Logic {
 
 		void ILoadable.OnModsLoad() { }
 
-		void ILoadable.OnPostModsLoad() { }
+		void ILoadable.OnPostModsLoad() {
+			this.LoadWidget();
+		}
 
 		void ILoadable.OnModsUnload() { }
 

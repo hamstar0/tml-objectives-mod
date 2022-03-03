@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using ModLibsUI.Classes.UI.Theme;
 using ModUtilityPanels;
 using ModUtilityPanels.Services.UI.UtilityPanels;
+using HUDElementsLib.Elements.Samples;
 using Objectives.UI;
 using Objectives.Logic;
 
@@ -34,6 +35,8 @@ namespace Objectives {
 		////////////////
 
 		internal UIObjectivesTab ObjectivesTabUI;
+
+		internal CompletionStatHUD ObjectivesProgressHUD;
 
 
 

@@ -14,6 +14,9 @@
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="HUDElementsLib">
+      <HintPath>..\..\..\HUD Elements Lib\Project\HUDElementsLib\bin\Release\net452\HUDElementsLib.dll</HintPath>
+    </Reference>
     <Reference Include="ModLibsCore">
       <HintPath>..\..\..\Mod Libs\Mod Libs Core\Project\ModLibsCore\bin\Release\net452\ModLibsCore.dll</HintPath>
     </Reference>

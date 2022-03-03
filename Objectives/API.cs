@@ -68,7 +68,7 @@ namespace Objectives {
 		/// <summary>
 		/// Gets a set of objectives according to a given criteria.
 		/// </summary>
-		/// <param name="criteria">Accepts an objective to test and its order index as parameters. Returns `true` if valid.</param>
+		/// <param name="criteria">Accepts an objective and its order index as parameters. Returns `true` if valid.</param>
 		/// <returns>Objectives mapped to their internal order indices.</returns>
 		public static IDictionary<int, Objective> GetObjectives( Func<Objective, int, bool> criteria ) {
 			if( Main.netMode == NetmodeID.Server ) {
