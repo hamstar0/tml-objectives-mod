@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
 using ModLibsCore.Classes.Loadable;
 using Objectives.Definitions;
 
@@ -27,7 +29,9 @@ namespace Objectives.Logic {
 		void ILoadable.OnModsLoad() { }
 
 		void ILoadable.OnPostModsLoad() {
-			this.LoadWidget();
+			if( !Main.dedServ && Main.netMode != NetmodeID.Server ) {
+				this.LoadWidget();
+			}
 		}
 
 		void ILoadable.OnModsUnload() { }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ModLoader;
 using ModLibsCore.Classes.Loadable;
 using HUDElementsLib;
 using HUDElementsLib.Elements.Samples;
-using Terraria.ModLoader;
 using Objectives.Definitions;
+
 
 namespace Objectives.Logic {
 	partial class ObjectiveManager : ILoadable {
