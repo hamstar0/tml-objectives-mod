@@ -16,6 +16,8 @@ namespace Objectives.Logic {
 				return false;
 			}
 
+			//
+
 			var myplayer = CustomPlayerData.GetPlayerData<ObjectivesCustomPlayer>( Main.myPlayer );
 
 			// Load data

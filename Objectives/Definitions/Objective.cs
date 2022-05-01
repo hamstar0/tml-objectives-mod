@@ -18,6 +18,8 @@ namespace Objectives.Definitions {
 
 		public string Description { get; protected set; }
 
+		public bool IsImportant { get; protected set; }
+
 		////
 
 		public float? PercentComplete { get; internal set; } = null;
@@ -30,9 +32,16 @@ namespace Objectives.Definitions {
 
 		////////////////
 
+		[Obsolete("use other constructor", true)]
 		protected Objective( string title, string description ) {
 			this.Title = title;
 			this.Description = description;
+		}
+
+		protected Objective( string title, string description, bool isImportant ) {
+			this.Title = title;
+			this.Description = description;
+			this.IsImportant = isImportant;
 		}
 
 		////

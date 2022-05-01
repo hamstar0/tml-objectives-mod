@@ -16,8 +16,18 @@ namespace Objectives.Definitions {
 
 		////////////////
 
+		[Obsolete( "use other constructor", true )]
 		public FlatObjective( string title, string description, FlatObjectiveCondition condition = null )
-					: base( title, description ) {
+					: base( title, description, false ) {
+			this.Condition = condition;
+		}
+
+		public FlatObjective(
+					string title,
+					string description,
+					bool isImportant,
+					FlatObjectiveCondition condition = null )
+				: base( title, description, isImportant ) {
 			this.Condition = condition;
 		}
 

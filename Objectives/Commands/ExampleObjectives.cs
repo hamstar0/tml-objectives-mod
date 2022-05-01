@@ -32,6 +32,7 @@ namespace Objectives.Commands {
 					//description: "He's let in one too many zombies",
 					title: "Kill A Blue Slime",
 					description: "What even is a slime?",
+					isImportant: false,
 					condition: ( obj ) => NPCLibraries.CurrentPlayerKillsOfBannerNpc(NPCID.BlueSlime) > 0
 				),
 				order: -1,
@@ -43,6 +44,7 @@ namespace Objectives.Commands {
 				objective: new PercentObjective(
 					title: "Collect 50 Rings",
 					description: "Wrong game.",
+					isImportant: false,
 					units: 50,
 					condition: ( obj ) => (float)PlayerItemFinderLibraries.CountTotalOfEach(
 						Main.LocalPlayer,
@@ -58,7 +60,8 @@ namespace Objectives.Commands {
 			ObjectivesAPI.AddObjective(
 				objective: new FlatObjective(
 					title: "Order Pizza",
-					description: "Can't be done."
+					description: "Can't be done.",
+					isImportant: true
 				),
 				order: -1,
 				alertPlayer: false,
@@ -69,6 +72,7 @@ namespace Objectives.Commands {
 				objective: new FlatObjective(
 					title: "Collect A Blueberry",
 					description: "Don't ask.",
+					isImportant: true,
 					condition: ( obj ) => (float)PlayerItemFinderLibraries.CountTotalOfEach(
 						Main.LocalPlayer,
 						new HashSet<int> { ItemID.BlueBerries },
@@ -84,6 +88,7 @@ namespace Objectives.Commands {
 				objective: new FlatObjective(
 					title: "Craft A Molotov",
 					description: "Viva la revolution!",
+					isImportant: false,
 					condition: ( obj ) => (float)PlayerItemFinderLibraries.CountTotalOfEach(
 						Main.LocalPlayer,
 						new HashSet<int> { ItemID.MolotovCocktail },
@@ -99,6 +104,7 @@ namespace Objectives.Commands {
 				objective: new PercentObjective(
 					title: "Kill 10 Squids",
 					description: "Thanks twerking Squidward. Some random squids must be punished now.",
+					isImportant: true,
 					units: 10,
 					condition: ( obj ) => (float)NPCLibraries.CurrentPlayerKillsOfBannerNpc( NPCID.Squid ) / 10f
 				),
@@ -111,6 +117,7 @@ namespace Objectives.Commands {
 				objective: new PercentObjective(
 					title: "Collect 99 Dirt Blocks",
 					description: "Mission impossible?",
+					isImportant: false,
 					units: 99,
 					condition: ( obj ) => (float)PlayerItemFinderLibraries.CountTotalOfEach(
 						Main.LocalPlayer,

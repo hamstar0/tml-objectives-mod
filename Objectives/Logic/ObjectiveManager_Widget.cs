@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using ModLibsCore.Classes.Loadable;
+using ModUtilityPanels.Services.UI.UtilityPanels;
 using HUDElementsLib;
 using HUDElementsLib.Elements.Samples;
 using Objectives.Definitions;
@@ -19,10 +20,14 @@ namespace Objectives.Logic {
 				(float)Main.screenHeight - dim.Y //- 32f
 			);
 
-			ObjectivesMod.Instance.ObjectivesProgressHUD = new CompletionStatHUD(
+			//
+
+			var mymod = ObjectivesMod.Instance;
+
+			mymod.ObjectivesProgressHUD = new CompletionStatHUD(
 				pos: pos,
 				dim: dim,
-				title: "Objectives:",
+				title: "Objectives",
 				stat: () => {
 					var mngr = ModContent.GetInstance<ObjectiveManager>();
 					ICollection<Objective> objs = mngr.CurrentObjectives.Values;
@@ -33,7 +38,27 @@ namespace Objectives.Logic {
 				enabler: () => Main.playerInventory
 			);
 
-			HUDElementsLibAPI.AddWidget( ObjectivesMod.Instance.ObjectivesProgressHUD );
+			//
+
+			var baseColor = new Color( 160, 160, 160 );
+			var litColor = new Color( 255, 255, 160 );
+
+			mymod.ObjectivesProgressHUD.TitleColor = baseColor;
+
+			mymod.ObjectivesProgressHUD.OnClick += (_, __) => {
+				UtilityPanelsTabs.OpenTab( ObjectivesMod.UtilityPanelsName );
+			};
+
+			mymod.ObjectivesProgressHUD.OnMouseOver += (_, __) => {
+				mymod.ObjectivesProgressHUD.TitleColor = litColor;
+			};
+			mymod.ObjectivesProgressHUD.OnMouseOut += (_, __) => {
+				mymod.ObjectivesProgressHUD.TitleColor = baseColor;
+			};
+
+			//
+
+			HUDElementsLibAPI.AddWidget( mymod.ObjectivesProgressHUD );
 		}
 	}
 }

@@ -23,10 +23,19 @@ namespace Objectives.Definitions {
 
 		////////////////
 
+		[Obsolete( "use other constructor", true )]
 		public ChecklistObjective(
 					string title, string description,
 					ChecklistObjectiveCondition condition = null )
-					: base( title, description ) {
+					: base( title, description, false ) {
+			this.Condition = condition;
+		}
+
+		public ChecklistObjective(
+					string title, string description,
+					bool isImportant,
+					ChecklistObjectiveCondition condition = null )
+					: base( title, description, isImportant ) {
 			this.Condition = condition;
 		}
 

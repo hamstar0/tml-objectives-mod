@@ -18,12 +18,24 @@ namespace Objectives.Definitions {
 
 		////////////////
 
+		[Obsolete( "use other constructor", true )]
 		public PercentObjective(
 					string title,
 					string description,
 					int units = -1,
 					PercentObjectiveCondition condition = null )
-					: base( title, description ) {
+					: base( title, description, false ) {
+			this.Units = units;
+			this.Condition = condition;
+		}
+
+		public PercentObjective(
+					string title,
+					string description,
+					bool isImportant,
+					int units = -1,
+					PercentObjectiveCondition condition = null )
+					: base( title, description, isImportant ) {
 			this.Units = units;
 			this.Condition = condition;
 		}

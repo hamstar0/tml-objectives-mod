@@ -107,6 +107,8 @@ namespace Objectives {
 				throw new ModLibsException( "Server objectives not allowed." );
 			}
 
+			//
+
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
 
 			return mngr.AddObjective( objective, order, alertPlayer, out result );

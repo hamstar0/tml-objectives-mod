@@ -42,6 +42,13 @@ namespace Objectives.UI {
 			this.DescriptionElem.Top.Set( 24f, 0f );
 			this.DescriptionElem.Width.Set( 0f, 1f );
 			this.Append( this.DescriptionElem );
+
+			//
+
+			if( this.Objective.IsImportant ) {
+				this.BackgroundColor = new Color( 64, 64, 48 );
+				this.BorderColor = new Color( 96, 96, 64 );
+			}
 		}
 
 
@@ -68,8 +75,22 @@ namespace Objectives.UI {
 		public override int CompareTo( object obj ) {
 			var otherObjectiveElem = obj as UIObjective;
 			if( otherObjectiveElem == null ) {
-				return -1;
+				return -1;	// up
 			}
+
+			//
+			
+			if( this.Objective.IsImportant ) {
+				if( !otherObjectiveElem.Objective.IsImportant ) {
+					return -1;	// up
+				}
+			} else {
+				if( otherObjectiveElem.Objective.IsImportant ) {
+					return 1;  // down
+				}
+			}
+
+			//
 
 			var mngr = ModContent.GetInstance<ObjectiveManager>();
 			string thisTitle = this.Objective.Title;
@@ -77,23 +98,25 @@ namespace Objectives.UI {
 
 			if( !mngr.CurrentObjectiveOrderByName.ContainsKey(thisTitle) ) {
 				if( !mngr.CurrentObjectiveOrderByName.ContainsKey(thatTitle) ) {
-					return 0;
+					return thisTitle.CompareTo( thatTitle );
 				} else {
-					return 1;
+					return 1;	// down
 				}
 			} else {
 				if( !mngr.CurrentObjectiveOrderByName.ContainsKey(thatTitle) ) {
-					return -1;
+					return -1;	// up
 				}
 			}
+
+			//
 
 			int thisOrder = mngr.CurrentObjectiveOrderByName[ thisTitle ];
 			int thatOrder = mngr.CurrentObjectiveOrderByName[ thatTitle ];
 
 			if( thisOrder > thatOrder ) {
-				return -1;
+				return -1;	// up
 			} else if( thisOrder < thatOrder ) {
-				return 1;
+				return 1;	// down
 			} else {
 				return 0;
 			}
@@ -104,6 +127,8 @@ namespace Objectives.UI {
 
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
+
+			//
 
 			float perc = this.Objective.PercentComplete.HasValue
 				? this.Objective.PercentComplete.Value
