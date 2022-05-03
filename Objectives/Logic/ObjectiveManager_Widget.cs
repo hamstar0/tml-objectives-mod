@@ -40,8 +40,9 @@ namespace Objectives.Logic {
 
 			//
 
+			float pulse = (float)Main.mouseTextColor / 255f;
 			var baseColor = new Color( 160, 160, 160 );
-			var litColor = new Color( 255, 255, 160 );
+			var litColor = new Color( 255, 255, (byte)(pulse*pulse*pulse*pulse*255f) );
 
 			mymod.ObjectivesProgressHUD.TitleColor = baseColor;
 
