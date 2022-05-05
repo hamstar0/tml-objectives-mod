@@ -13,6 +13,19 @@ using Objectives.Definitions;
 
 namespace Objectives.Logic {
 	partial class ObjectiveManager : ILoadable {
+		public static Color GetTextColor( bool isLit ) {
+			if( !isLit ) {
+				return new Color( 160, 160, 160 );
+			} else {
+				float pulse = (float)Main.mouseTextColor / 255f;
+				return new Color( 255, 255, (byte)(pulse * pulse * pulse * pulse * 255f) );
+			}
+		}
+
+
+
+		////////////////
+
 		private void LoadWidget() {
 			var dim = new Vector2( 176f, 52f );
 			var pos = new Vector2(
@@ -40,21 +53,17 @@ namespace Objectives.Logic {
 
 			//
 
-			float pulse = (float)Main.mouseTextColor / 255f;
-			var baseColor = new Color( 160, 160, 160 );
-			var litColor = new Color( 255, 255, (byte)(pulse*pulse*pulse*pulse*255f) );
+			mymod.ObjectivesProgressHUD.TitleColor = ObjectiveManager.GetTextColor( false );
 
-			mymod.ObjectivesProgressHUD.TitleColor = baseColor;
+			mymod.ObjectivesProgressHUD.OnMouseOver += (_, __) => {
+				mymod.ObjectivesProgressHUD.TitleColor = ObjectiveManager.GetTextColor( true );
+			};
+			mymod.ObjectivesProgressHUD.OnMouseOut += (_, __) => {
+				mymod.ObjectivesProgressHUD.TitleColor = ObjectiveManager.GetTextColor( false );
+			};
 
 			mymod.ObjectivesProgressHUD.OnClick += (_, __) => {
 				UtilityPanelsTabs.OpenTab( ObjectivesMod.UtilityPanelsName );
-			};
-
-			mymod.ObjectivesProgressHUD.OnMouseOver += (_, __) => {
-				mymod.ObjectivesProgressHUD.TitleColor = litColor;
-			};
-			mymod.ObjectivesProgressHUD.OnMouseOut += (_, __) => {
-				mymod.ObjectivesProgressHUD.TitleColor = baseColor;
 			};
 
 			//
