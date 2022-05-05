@@ -69,6 +69,11 @@ namespace Objectives.Logic {
 
 		private void UpdateWidget_If() {
 			CompletionStatHUD widget = ObjectivesMod.Instance.ObjectivesProgressHUD;
+			if( !widget.IsEnabled() ) {
+				return;
+			}
+
+			//
 
 			if( widget.IsMouseHovering ) {
 				widget.TitleColor = ObjectiveManager.GetTextColor( true );
