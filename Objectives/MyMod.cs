@@ -71,7 +71,7 @@ namespace Objectives {
 		////////////////
 
 		public override void PostUpdateEverything() {
-			ModContent.GetInstance<ObjectiveManager>()?.Update_Internal();
+			ModContent.GetInstance<ObjectiveManager>()?.Update();
 		}
 	}
 }

@@ -39,13 +39,17 @@ namespace Objectives.Logic {
 
 		////////////////
 
-		internal void Update_Internal() {
+		internal void Update() {
 			if( this._UpdateTimer-- <= 0 ) {
 				this._UpdateTimer = 60;
-			} else {
-				return;
+
+				this.Update_Intervals();
 			}
 
+			this.UpdateWidget_If();
+		}
+
+		internal void Update_Intervals() {
 			foreach( Objective obj in this.CurrentObjectives.Values ) {
 				if( obj.Update_Internal() ) {
 					this.NotifySubscribers( obj, false );

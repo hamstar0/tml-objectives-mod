@@ -55,13 +55,6 @@ namespace Objectives.Logic {
 
 			mymod.ObjectivesProgressHUD.TitleColor = ObjectiveManager.GetTextColor( false );
 
-			mymod.ObjectivesProgressHUD.OnMouseOver += (_, __) => {
-				mymod.ObjectivesProgressHUD.TitleColor = ObjectiveManager.GetTextColor( true );
-			};
-			mymod.ObjectivesProgressHUD.OnMouseOut += (_, __) => {
-				mymod.ObjectivesProgressHUD.TitleColor = ObjectiveManager.GetTextColor( false );
-			};
-
 			mymod.ObjectivesProgressHUD.OnClick += (_, __) => {
 				UtilityPanelsTabs.OpenTab( ObjectivesMod.UtilityPanelsName );
 			};
@@ -69,6 +62,19 @@ namespace Objectives.Logic {
 			//
 
 			HUDElementsLibAPI.AddWidget( mymod.ObjectivesProgressHUD );
+		}
+
+
+		////////////////
+
+		private void UpdateWidget_If() {
+			CompletionStatHUD widget = ObjectivesMod.Instance.ObjectivesProgressHUD;
+
+			if( widget.IsMouseHovering ) {
+				widget.TitleColor = ObjectiveManager.GetTextColor( true );
+			} else {
+				widget.TitleColor = ObjectiveManager.GetTextColor( false );
+			}
 		}
 	}
 }
