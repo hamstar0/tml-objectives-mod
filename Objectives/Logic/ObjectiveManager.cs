@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using ModLibsCore.Classes.Loadable;
+using HUDElementsLib.Elements.Samples;
 using Objectives.Definitions;
 
 
@@ -14,13 +16,22 @@ namespace Objectives.Logic {
 
 		////////////////
 
-		public ConcurrentDictionary<string, Objective> CurrentObjectives { get; } = new ConcurrentDictionary<string, Objective>();
+		public ConcurrentDictionary<string, Objective> CurrentObjectives { get; }
+			= new ConcurrentDictionary<string, Objective>();
 
-		public IList<string> CurrentObjectiveOrder { get; } = new List<string>();
+		public IList<string> CurrentObjectiveOrder { get; }
+			= new List<string>();
 
-		public ConcurrentDictionary<string, int> CurrentObjectiveOrderByName { get; } = new ConcurrentDictionary<string, int>();
+		public ConcurrentDictionary<string, int> CurrentObjectiveOrderByName { get; }
+			= new ConcurrentDictionary<string, int>();
 
-		public ConcurrentDictionary<string, ObjectivesAPI.SubscriptionEvent> Subscribers { get; } = new ConcurrentDictionary<string, ObjectivesAPI.SubscriptionEvent>();
+		public ConcurrentDictionary<string, ObjectivesAPI.SubscriptionEvent> Subscribers { get; }
+			= new ConcurrentDictionary<string, ObjectivesAPI.SubscriptionEvent>();
+
+
+		////////////////
+
+		private CompletionStatHUD ObjectivesProgressHUD;
 
 
 
@@ -54,6 +65,15 @@ namespace Objectives.Logic {
 				if( obj.Update_Internal() ) {
 					this.NotifySubscribers( obj, false );
 				}
+			}
+		}
+
+
+		////////////////
+
+		public void PostDrawInterface( SpriteBatch spriteBatch ) {
+			if( this.ObjectivesProgressHUD.IsMouseHovering ) {
+				Main.LocalPlayer.mouseInterface = true;
 			}
 		}
 	}

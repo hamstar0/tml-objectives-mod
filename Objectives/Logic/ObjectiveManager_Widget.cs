@@ -35,9 +35,7 @@ namespace Objectives.Logic {
 
 			//
 
-			var mymod = ObjectivesMod.Instance;
-
-			mymod.ObjectivesProgressHUD = new CompletionStatHUD(
+			this.ObjectivesProgressHUD = new CompletionStatHUD(
 				pos: pos,
 				dim: dim,
 				title: "Objectives",
@@ -53,22 +51,22 @@ namespace Objectives.Logic {
 
 			//
 
-			mymod.ObjectivesProgressHUD.TitleColor = ObjectiveManager.GetTextColor( false );
+			this.ObjectivesProgressHUD.TitleColor = ObjectiveManager.GetTextColor( false );
 
-			mymod.ObjectivesProgressHUD.OnClick += (_, __) => {
+			this.ObjectivesProgressHUD.OnClick += (_, __) => {
 				UtilityPanelsTabs.OpenTab( ObjectivesMod.UtilityPanelsName );
 			};
 
 			//
 
-			HUDElementsLibAPI.AddWidget( mymod.ObjectivesProgressHUD );
+			HUDElementsLibAPI.AddWidget( this.ObjectivesProgressHUD );
 		}
 
 
 		////////////////
 
 		private void UpdateWidget_If() {
-			CompletionStatHUD widget = ObjectivesMod.Instance.ObjectivesProgressHUD;
+			CompletionStatHUD widget = this.ObjectivesProgressHUD;
 			if( !widget.IsEnabled() ) {
 				return;
 			}
