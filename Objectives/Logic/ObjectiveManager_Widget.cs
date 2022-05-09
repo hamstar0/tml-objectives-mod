@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using ModLibsCore.Classes.Loadable;
 using ModUtilityPanels.Services.UI.UtilityPanels;
@@ -65,7 +66,13 @@ namespace Objectives.Logic {
 
 		////////////////
 
-		private void UpdateWidget_If() {
+		private void UpdateWidget_Local_If() {
+			if( Main.dedServ || Main.netMode == NetmodeID.Server ) {
+				return;
+			}
+
+			//
+
 			CompletionStatHUD widget = this.ObjectivesProgressHUD;
 			if( !widget.IsEnabled() ) {
 				return;

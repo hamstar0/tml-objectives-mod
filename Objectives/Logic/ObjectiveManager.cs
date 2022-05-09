@@ -57,7 +57,9 @@ namespace Objectives.Logic {
 				this.Update_Intervals();
 			}
 
-			this.UpdateWidget_If();
+			//
+
+			this.UpdateWidget_Local_If();
 		}
 
 		internal void Update_Intervals() {
