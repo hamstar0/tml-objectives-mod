@@ -29,15 +29,16 @@ namespace Objectives.Logic {
 
 		private void LoadWidget() {
 			var dim = new Vector2( 176f, 52f );
-			var pos = new Vector2(
-				((float)Main.screenWidth - dim.X) * 0.5f,
-				(float)Main.screenHeight - dim.Y - 32f
+			var posOffset = new Vector2(
+				dim.X * 0.5f,
+				-dim.Y - 32f
 			);
 
 			//
 
 			this.ObjectivesProgressHUD = new CompletionStatHUD(
-				pos: pos,
+				relPos: posOffset,
+				percPos: new Vector2( 0.5f, 1f ),
 				dim: dim,
 				title: "Objectives",
 				stat: () => {
