@@ -30,7 +30,7 @@ namespace Objectives.Logic {
 		private void LoadWidget() {
 			var dim = new Vector2( 176f, 52f );
 			var posOffset = new Vector2(
-				dim.X * 0.5f,
+				-dim.X * 0.5f,
 				-dim.Y - 32f
 			);
 
